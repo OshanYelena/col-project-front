@@ -542,7 +542,7 @@ video {
      {
   -webkit-appearance: none;
           appearance: none;
-  background-color: #fff;
+  background-color: rgb(0, 0, 0);
   border-color: #71717a;
   border-width: 1px;
   border-radius: 0px;
@@ -622,7 +622,7 @@ select {
   height: 1rem;
   width: 1rem;
   color: #2563eb;
-  background-color: #fff;
+  background-color: rgb(4, 4, 4);
   border-color: #71717a;
   border-width: 1px;
 }

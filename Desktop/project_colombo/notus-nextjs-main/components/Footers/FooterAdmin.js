@@ -11,10 +11,9 @@ export default function FooterAdmin() {
               <div className="text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left">
                 Copyright © {new Date().getFullYear()}{" "}
                 <a
-                  href="https://www.creative-tim.com?ref=nnjs-footer-admin"
                   className="text-blueGray-500 hover:text-blueGray-700 text-sm font-semibold py-1"
                 >
-                  Creative Tim
+                Parttimer.lk
                 </a>
               </div>
             </div>
@@ -22,10 +21,9 @@ export default function FooterAdmin() {
               <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                 <li>
                   <a
-                    href="https://www.creative-tim.com?ref=nnjs-footer-admin"
                     className="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
                   >
-                    Creative Tim
+                    Parttimer.lk
                   </a>
                 </li>
                 <li>
@@ -37,20 +35,20 @@ export default function FooterAdmin() {
                   </a>
                 </li>
                 <li>
-                  <a
+                  {/* <a
                     href="http://blog.creative-tim.com?ref=nnjs-footer-admin"
                     className="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
                   >
                     Blog
-                  </a>
+                  </a> */}
                 </li>
                 <li>
-                  <a
+                  {/* <a
                     href="https://github.com/creativetimofficial/notus-nextjs/blob/main/LICENSE.md?ref=nnjs-footer-admin"
                     className="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
                   >
                     MIT License
-                  </a>
+                  </a> */}
                 </li>
               </ul>
             </div>

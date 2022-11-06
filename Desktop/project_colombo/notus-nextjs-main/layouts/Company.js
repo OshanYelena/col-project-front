@@ -6,6 +6,7 @@ import Company from "components/Sidebar/Company.js";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import HeaderStats from "components/Headers/HeaderStats.js";
 
+
 export default function Admin({ children }) {
   return (
     <>

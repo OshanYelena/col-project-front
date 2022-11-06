@@ -8,7 +8,7 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 export default function Auth({ children }) {
   return (
     <>
-      <IndexNavbar   />
+      <IndexNavbar />
       <main>
         <section className="relative w-full h-full py-40 min-h-screen">
           <div

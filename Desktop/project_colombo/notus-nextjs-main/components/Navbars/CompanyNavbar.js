@@ -43,7 +43,7 @@ export default function CompanyNavbar() {
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link href={"/"}>
             <a
-              className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+              className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
             >
               Parttimer
             </a>
@@ -67,7 +67,7 @@ export default function CompanyNavbar() {
               <li className="flex items-center"></li>
               <li className="flex items-center">
                 <Link href={"/company/dashboard/"}>
-                  <a className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
+                  <a className="hover:text-white text-white px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
                     <i className="text-blueGray-400 far fa-file-alt text-lg leading-lg mr-2" />{" "}
                     DashBoard
                   </a>
@@ -76,7 +76,7 @@ export default function CompanyNavbar() {
 
               <li className="flex items-center">
                 <Link href={"/company/profile/"}>
-                  <a className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
+                  <a className="hover:text-white text-white px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
                     <i className="text-blueGray-400 far fa-file-alt text-lg leading-lg mr-2" />{" "}
                     Profile
                     <span className="lg:hidden inline-block ml-2">Share</span>

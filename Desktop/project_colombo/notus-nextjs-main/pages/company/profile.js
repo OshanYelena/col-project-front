@@ -14,11 +14,13 @@ import Company from "layouts/Company.js";
 export default function Settings() {
   const [data, setData] = useState({});
   const [edit, setEdit] = useState(true);
+  const [url, setUrl] = useState();
 
   useEffect(async () => {
     // getData();
     const dataLoad = await getData();
     console.log(dataLoad);
+    setUrl(dataLoad.urls)
 
     setData(dataLoad.company);
   }, []);
@@ -136,9 +138,10 @@ export default function Settings() {
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full px-4 flex justify-center">
                       <div className="relative">
+                        {console.log(data)}
                         <img
                           alt="..."
-                          src="/img/team-2-800x800.jpg"
+                          src={url}
                           className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                         />
                       </div>
@@ -150,7 +153,7 @@ export default function Settings() {
                             22
                           </span>
                           <span className="text-sm text-blueGray-400">
-                            Friends
+                          Adds
                           </span>
                         </div>
                         <div className="mr-4 p-3 text-center">
@@ -158,7 +161,7 @@ export default function Settings() {
                             10
                           </span>
                           <span className="text-sm text-blueGray-400">
-                            Photos
+                            Students
                           </span>
                         </div>
                         <div className="lg:mr-4 p-3 text-center">
@@ -166,7 +169,7 @@ export default function Settings() {
                             89
                           </span>
                           <span className="text-sm text-blueGray-400">
-                            Comments
+                            Applications
                           </span>
                         </div>
                       </div>
