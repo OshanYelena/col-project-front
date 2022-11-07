@@ -1,0 +1,16 @@
+.policy-text {
+    font-size: 20px;
+}
+
+.policy-text li {
+     margin-bottom: 15px;
+}
+
+.icon {
+   padding-right: 5px;
+}
+
+.modal-header {
+    justify-content: center !important;
+    font-size: 26px;
+} 

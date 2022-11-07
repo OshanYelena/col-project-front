@@ -1,0 +1,27 @@
+@keyframes FadeInOut {
+    0% {opacity:1;}
+    25% {opacity:.75;}
+    50% {opacity:.5;}
+    100% {opacity:0;}
+  }
+
+  #fading img {
+    position:absolute;
+    right:0;
+    }
+
+    #fading img.top {
+        -webkit-animation-name: FadeInOut;
+        -webkit-animation-timing-function: ease-in-out;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-duration: 4s;
+        -webkit-animation-direction: alternate;
+        }
+
+        #fading img.top {
+            animation-name: FadeInOut;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 6s;
+            animation-direction: alternate;
+            }
