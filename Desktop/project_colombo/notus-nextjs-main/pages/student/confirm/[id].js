@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 
-
-
 import Auth from "layouts/Auth.js";
-
+import Link from "next/link";
 
 const Student = () => {
-
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -22,10 +19,17 @@ const Student = () => {
                 <div className="btn-wrapper text-center">
                   ` ` {/* logo and icon */}
                 </div>
-                <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error id quis ex dicta ut, consequuntur, quasi mollitia repellendus deserunt ea tempora explicabo qui necessitatibus nihil numquam nulla distinctio enim temporibus.</div>
+                <div>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Error id quis ex dicta ut, consequuntur, quasi mollitia
+                  repellendus deserunt ea tempora explicabo qui necessitatibus
+                  nihil numquam nulla distinctio enim temporibus.
+                </div>
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
+                <Link href={"/"}>
+                  <button type="submit">Back to DashBoard</button>
+                </Link>
               </div>
-          
             </div>
           </div>
         </div>
