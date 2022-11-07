@@ -10,7 +10,6 @@ export const getData = async (e) => {
       },
     })
     .then(({ data }) => data);
-  console.log("ajsdhafdxsdaqi9s8d7tqrdx", data);
   if (data) return data;
 };
 
