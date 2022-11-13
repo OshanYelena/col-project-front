@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Page from "layouts/Pages.js";
 
-import api from "../../api/contact";
+import api from "../../../api/contact";
 
 import { getData, existApplication } from "api/companydata";
 
-import JobApplyId from "pages/student/job-apply/[com]/[id]";
+import fb from "config/firebase";
 
 const JobCard = () => {
 
@@ -15,9 +15,11 @@ const JobCard = () => {
     var userType = localStorage.getItem("type");
   }
   const { query } = useRouter();
-  const router = useRouter();
   const [addData, setAddData] = useState();
+  const [application, setApplication] = useState(false);
   const [userData, setUserData] = useState({});
+  const [cvUrl, setcvUrl] = useState("");
+  const [loader, setUrloader] = useState(false);
   const [jobId, setJobId] = useState("");
   const [comId, setcomId] = useState("");
   const [applied, setApplied] = useState(true);
@@ -40,8 +42,44 @@ const JobCard = () => {
     } else setExist(false);
   };
 
+  const getUserData = (data) => {
+    setUserData(data);
+  };
+
+  const handleFile = (e) => {
+    e.preventDefault();
+    const image = e.target.files[0];
+    const ref = fb.storage().ref(`/application/cv/${image.name}`);
+    const uploadTask = ref.put(image);
+    uploadTask.on("state_changed", console.log, console.error, () => {
+      ref.getDownloadURL().then((url) => {
+        setcvUrl(url);
+      });
+
+      setUrloader(true);
+    });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const studentDetails = userData.studentDetails;
+    const studentId = userData._id
+    let data = await api
+      .post("/student/job-application", { studentDetails, jobId, cvUrl, comId, studentId })
+      .then(({ data }) => data);
+    if (data.message === "application Submited") {
+    }
+  };
+
+  const apply = async (e) => {
+    e.preventDefault();
+    setApplication(true);
+  };
+  
   useEffect(async () => {
     getAddData();
+    const userData = await getData();
+    getUserData(userData);
   }, []);
 
   return (
@@ -181,13 +219,11 @@ const JobCard = () => {
                     <div className="relative mt-10 flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
                       <article class="flex-auto px-4 lg:px-10 py-10 pt-0">
                         <div class="job-title-adds">Software Engineer</div>
+                        {console.log(applied)}
                         {applied ? (
-                          <Link href={`/student/job-apply/${comId}/${jobId}`}>
-                    
-                          <button type="submit"  >
+                          <button onClick={apply} className="apply-button">
                             Apply Now
                           </button>
-                          </Link>
                         ) : (
                           <>
                             {" "}
@@ -198,6 +234,84 @@ const JobCard = () => {
                         )}
                       </article>
                     </div>
+                    {application && (
+                      <>
+                        <div className="container px-4 h-full">
+                          <div className="flex content-center items-center justify-center">
+                            <div className="">
+                              <div className="relative mt-10 flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+                                <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+                                  <div className="text-blueGray-400 text-center mt-10 mb-3 font-bold">
+                                    <small>Apply to this job</small>
+                                  </div>
+                                  <form onSubmit={onSubmit}>
+                                    <div className="relative w-full mb-3">
+                                      <label
+                                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        htmlFor="grid-password"
+                                      >
+                                        Email
+                                      </label>
+                                      <input
+                                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        id="email"
+                                        type="email"
+                                        value={userData.studentDetails.email}
+                                      />
+                                    </div>
+                                    <div className="relative w-full mb-3">
+                                      <label
+                                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        htmlFor="grid-password"
+                                      >
+                                        Student Name
+                                      </label>
+                                      <input
+                                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        id="name"
+                                        type="text"
+                                        value={userData.studentDetails.name}
+                                      />
+                                    </div>
+
+                                    <div className="relative w-full mb-3">
+                                      <label
+                                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        htmlFor="grid-password"
+                                      >
+                                        Submit Your CV
+                                      </label>
+                                      <input
+                                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        id="cv"
+                                        onChange={handleFile}
+                                        type="file"
+                                      />
+                                    </div>
+
+                                    <div className="text-center mt-6">
+                                      {loader && (
+                                        <button
+                                          className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                                          type="submit"
+                                          onClick={onSubmit}
+                                          // disabled={userError}
+                                        >
+                                          Apply
+                                        </button>
+                                      )}
+                                    </div>
+                                    {/* {userError && (
+                    <p className="error">Incorrect Email or Password</p>
+                  )} */}
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

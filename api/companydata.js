@@ -13,19 +13,37 @@ export const getData = async (e) => {
   if (data) return data;
 };
 
+export const getCompanyDataAdmin = async (id) => {
+  console.log(id)
+  let data = await api.get(`/company/${id}`).then(({ data }) => data);
+  if (data) return data;
+};
+
+export const getStudentDataAdmin = async (id) => {
+  console.log(id)
+  let data = await api.get(`/student/registered/${id}`).then(({ data }) => data);
+  if (data) return data;
+};
+
 export const existApplication = async (comId) => {
-    console.log(comId)
+  console.log(comId);
   let data = await api
     .get("/student/job-application/submition", {
       headers: {
-        "jobId": comId,
+        jobId: comId,
       },
     })
     .then(({ data }) => data);
-    console.log(data)
+  console.log(data);
   if (data === "No Application") {
     return true;
   } else {
     return false;
   }
+};
+
+export const getCompanies = async () => {
+  let data = await api.get("/companies", {}).then(({ data }) => data);
+  console.log(data);
+  return data;
 };

@@ -98,7 +98,7 @@ export default function CardAdd() {
   const onSubmit = async (e) => {
     setUpload(false);
     let data = await api
-      .post("/company/new-add", {
+      .post("/company/new/add", {
         addData,
         jobDescription,
         companyId,

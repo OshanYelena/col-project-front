@@ -5,6 +5,7 @@ import Link from "next/link";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import StudentNavbar from "components/Navbars/StudentNavbar";
 import CompanyNavbar from "components/Navbars/CompanyNavbar";
+import Admin from "components/Navbars/Admin";
 import Footer from "components/Footers/Footer.js";
 import SearchBox from "components/search/searchBox";
 
@@ -26,6 +27,7 @@ export default function Index() {
       {navbar === "student" && <StudentNavbar fixed />}
 
       {navbar === "company" && <CompanyNavbar />}
+      {navbar === "admin" && <Admin />}
       {!navbar && <IndexNavbar fixed />}
 
       <section className="header bg-black relative pt-16 items-center flex h-screen max-h-860-px">

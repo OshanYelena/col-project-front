@@ -17,25 +17,28 @@ import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
 const ApplicationsStudent = (color = "dark") => {
   const [application, setApplication] = useState([]);
+  const [studentId, setStudentId] = useState("");
+  const [companyId, setCompanyId] = useState("");
 
   const applications = async (id) => {
     let data = await api
       .get("/student/submitted/applications", {
         headers: {
-          "studentId": id,
+          studentId: id,
         },
       })
       .then(({ data }) => data);
     setApplication(data);
-    console.log(data);
+
+    setStudentId(data[0].studentId);
+    setCompanyId(data[0].companyId);
+    console.log("application", data[0]);
   };
 
   useEffect(async () => {
     const data = await getData();
-    console.log(data)
-
+    console.log(data);
     applications(data._id);
-    // setComapnyId(data._id);
   }, []);
 
   return (
@@ -64,7 +67,7 @@ const ApplicationsStudent = (color = "dark") => {
                               : "text-white")
                           }
                         >
-                        Applications
+                          Applications
                         </h3>
                       </div>
                     </div>
@@ -116,7 +119,7 @@ const ApplicationsStudent = (color = "dark") => {
                           </th>
                           <th
                             className={
-                              "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                              "px-6 text-center align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                               (color === "light"
                                 ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
                                 : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
@@ -163,22 +166,81 @@ const ApplicationsStudent = (color = "dark") => {
                             {data.studentDetails.faculty}
                           </td>
                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                            <a className="job-tag" target={"_blank"} href={"/adds/" + data.jobId}>
+                            <a
+                              className="job-tag"
+                              target={"_blank"}
+                              href={"/adds/" + data.jobId}
+                            >
                               View Job Post
                             </a>
                           </td>
 
                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                             <div className="flex items-center">
-                              <span className="mr-2">60%</span>
-                              <div className="relative w-full">
-                                <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                                  <div
-                                    style={{ width: "60%" }}
-                                    className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
-                                  ></div>
-                                </div>
-                              </div>
+                              {console.log(data.jobStatus)}
+                              {data.jobStatus === undefined && (
+                                <>
+                                  <span
+                                    style={{
+                                      background: "yellow",
+                                      color: "black",
+                                    }}
+                                    className="mr-2 p-5"
+                                  >
+                                    pending
+                                  </span>
+                                </>
+                              )}
+                              {data.jobStatus === "accept" && (
+                                <>
+                                  <span
+                                    style={{
+                                      background: "green",
+                                      color: "black",
+                                    }}
+                                    className="mr-2 p-5"
+                                  >
+                                    Accepted
+                                  </span>
+                                </>
+                              )}
+                              {data.jobStatus === "reject" && (
+                                <>
+                                  <span
+                                    style={{
+                                      background: "red",
+                                      color: "black",
+                                    }}
+                                    className="mr-2 p-5"
+                                  >
+                                    Rejected
+                                  </span>
+                                </>
+                              )}
+
+                              {data.jobStatus === "complete" && (
+                                <>
+                                  <div>
+                                    <span className="bg-indigo-500 mr-2 p-5">
+                                      Congratulations! You have completed this
+                                      job
+                                    </span>
+                                  </div>
+                                  <div>
+                                    {console.log(studentId)}
+                                    <Link
+                                      href={`/student/${studentId}/${companyId}/${data.jobId}/${data._id}/review`}
+                                    >
+                                      <button
+                                        className="bg-purple-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                        type="button"
+                                      >
+                                        Review your job now!
+                                      </button>
+                                    </Link>
+                                  </div>
+                                </>
+                              )}
                             </div>
                           </td>
                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
@@ -196,6 +258,36 @@ const ApplicationsStudent = (color = "dark") => {
             </div>
           );
         })}
+
+      {!application && (
+        <>
+          <div
+            className={
+              "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
+              (color === "dark" ? "bg-white" : "bg-blueGray-700 text-white")
+            }
+          >
+            <div className="rounded-t mb-0 px-4 py-3 border-0">
+              <div className="flex flex-wrap items-center">
+                <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+                  <h3
+                    className={
+                      "font-semibold text-lg " +
+                      (color === "light" ? "text-blueGray-700" : "text-white")
+                    }
+                  >
+                    Applications
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div className="block w-full overflow-x-auto">
+              {/* Projects table */}
+              <div>Not Yet Submitted Any Applications</div>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

@@ -20,7 +20,7 @@ export default function Policy({ companyData, urls }) {
     };
 
     let data = await api
-      .post("/company/new", dataBody)
+      .post("/company/create/new", dataBody)
       .then(({ data }) => data);
     console.log(data);
     if (data.message === "Company Created") {

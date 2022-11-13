@@ -1,12 +1,15 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { createPopper } from "@popperjs/core";
 import { useRouter } from "next/router.js";
 
-import api from '../../api/contact'
+import api from "../../api/contact";
 
-const UserDropdown = () => {
+import { getData } from "api/companydata";
+
+const CompanyDropdown = () => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+  const [url, setUrl] = useState();
   const router = useRouter();
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
@@ -19,6 +22,12 @@ const UserDropdown = () => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  useEffect(async () => {
+    const data = await getData();
+    setUrl(data.urls);
+    console.log(data.urls)
+  }, []);
 
   const logOut = async (e) => {
     e.preventDefault();
@@ -36,9 +45,6 @@ const UserDropdown = () => {
     }
   };
 
-
-
-
   return (
     <>
       <a
@@ -53,9 +59,9 @@ const UserDropdown = () => {
         <div className="items-center flex">
           <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
             <img
+              src={`${url}`}
               alt="..."
               className="w-full rounded-full align-middle border-none shadow-lg"
-              src="/img/144989837-global-admin-icon-outline-global-admin-vector-icon-for-web-design-isolated-on-white-background.webp"
             />
           </span>
         </div>
@@ -83,7 +89,7 @@ const UserDropdown = () => {
           }
           onClick={logOut}
         >
-         Logout
+          Logout
         </a>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
       </div>
@@ -91,4 +97,4 @@ const UserDropdown = () => {
   );
 };
 
-export default UserDropdown;
+export default CompanyDropdown;

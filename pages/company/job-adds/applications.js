@@ -19,11 +19,15 @@ const Applications = (color = "dark") => {
   const [application, setApplication] = useState([]);
   const [remove, setRemove] = useState(false);
   const [addId, setAddId] = useState();
+  const [complete, setComplete] = useState(false);
+  const [compayId, setComId] = useState("");
+
   const [accept, setAccept] = useState(false);
   const [btnColor, setColor] = useState("");
-  const [refresh, setRefresh] = useState(false)
+  const [refresh, setRefresh] = useState(false);
 
   const applications = async (comId) => {
+    setComId(comId)
     let data = await api
       .get("/student/applications", {
         headers: {
@@ -32,7 +36,7 @@ const Applications = (color = "dark") => {
       })
       .then(({ data }) => data);
     setApplication(data);
-    console.log(data);
+    console.log("aksjdjhgagsfcda",data);
   };
 
   const statusManager = async (id, appliStatus) => {
@@ -44,16 +48,15 @@ const Applications = (color = "dark") => {
     let data = await api
       .post("/student/application/status", { id, appliStatus })
       .then(({ data }) => data);
-  
-     console.log(data);
-  };
 
+    console.log(data);
+  };
   useEffect(async () => {
     const data = await getData();
     // console.log(data._id)
     applications(data._id);
     // setComapnyId(data._id);
-  }, [application]);
+  }, []);
 
   return (
     <>
@@ -71,7 +74,7 @@ const Applications = (color = "dark") => {
                     Reject this Application ?
                   </span>
                   <button
-                  type="button"
+                    type="button"
                     onClick={statusManager(data._id, "reject")}
                     className=" remove-tag  bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
                   >
@@ -101,6 +104,35 @@ const Applications = (color = "dark") => {
                   </span>
                   <button
                     onClick={statusManager(data._id, "accept")}
+                    className=" remove-tag  bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
+                  >
+                    <span>Accept</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setAccept(false), setRemove(false);
+                    }}
+                    className=" exit-tag  bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
+                  >
+                    <span>Close</span>
+                  </button>
+                </div>
+              )}
+
+              {remove && addId === data._id && complete && (
+                <div
+                  style={{ fontSize: "18px" }}
+                  className="text-white alert-tag  px-6 py-4 border-0 rounded relative mb-4 bg-emerald-500"
+                >
+                  <span className=" inline-block mr-5 align-middle">
+                    <i className="fas fa-bell"></i>
+                  </span>
+                  <span className="inline-block align-middle mr-8">
+                    <b className="capitalize">Warning</b> Are You Sure to Set As
+                    Complete the Job?
+                  </span>
+                  <button
+                    onClick={statusManager(data._id, "complete")}
                     className=" remove-tag  bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
                   >
                     <span>Accept</span>
@@ -156,16 +188,7 @@ const Applications = (color = "dark") => {
                             >
                               Student Name
                             </th>
-                            <th
-                              className={
-                                "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                (color === "light"
-                                  ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                                  : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
-                              }
-                            >
-                              University
-                            </th>
+
                             <th
                               className={
                                 "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
@@ -198,13 +221,23 @@ const Applications = (color = "dark") => {
                             </th>
                             <th
                               className={
-                                "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                "px-6 text-center align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                                 (color === "light"
                                   ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
                                   : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                               }
                             >
                               CV{" "}
+                            </th>
+                            <th
+                              className={
+                                "px-6 text-center align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                (color === "light"
+                                  ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                                  : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
+                              }
+                            >
+                              Report
                             </th>
                           </tr>
                         </thead>
@@ -230,10 +263,7 @@ const Applications = (color = "dark") => {
                             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                               {data.studentDetails.university}
                             </td>
-                            <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                              {/* <i className="fas fa-circle text-orange-500 mr-2"></i>{" "} */}
-                              {data.studentDetails.faculty}
-                            </td>
+
                             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                               <a
                                 className="job-tag"
@@ -253,7 +283,7 @@ const Applications = (color = "dark") => {
                                       className="bg-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                                       type="button"
                                       onClick={() => {
-                                        setRemove(true), setAddId(data._id);
+                                        setRemove(false), setAddId(data._id);
                                       }}
                                     >
                                       Reject Application
@@ -273,16 +303,45 @@ const Applications = (color = "dark") => {
                                     </button>
                                   </>
                                 ) : (
-                                  <button
-                                    style={{ width: "100%", backgroundColor: btnColor }}
-                                    className="bg-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                                    type="button"
-                                    disabled
-                                  >
-                                    {data.jobStatus}
-                                  </button>
+                                  <>
+                                    {data.jobStatus !== "complete" && (
+                                      <>
+                                        <button
+                                          style={{
+                                            width: "100%",
+                                            backgroundColor: btnColor,
+                                          }}
+                                          className="bg-purple-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                          type="button"
+                                          onClick={() => {
+                                            setRemove(false),
+                                              setAddId(data._id),
+                                              setComplete(true);
+                                          }}
+                                        >
+                                          Finished the job
+                                        </button>
+                                      </>
+                                    )}
+                                  </>
                                 )}
 
+                                {data.jobStatus === "complete" && (
+                                  <>
+                                    {" "}
+                                    <button
+                                      style={{
+                                        width: "100%",
+                                        backgroundColor: btnColor,
+                                      }}
+                                      className="bg-pink-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                      type="button"
+                                      disabled={true}
+                                    >
+                                      Job Has Completed
+                                    </button>
+                                  </>
+                                )}
                                 <div className="relative w-full"></div>
                               </div>
                             </td>
@@ -291,6 +350,17 @@ const Applications = (color = "dark") => {
                                 <button className="cv-button">View CV</button>{" "}
                               </a>
                               {/* <TableDropdown /> */}
+                            </td>
+                            <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                              <Link href={`/company/report/${compayId}/${data.studentId}/${data.jobId}/${data._id}`}>
+                              <button
+                                style={{ width: "100%" }}
+                                className="bg-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                type="button"
+                              >
+                                Report this Student
+                              </button>
+                              </Link>
                             </td>
                           </tr>
                         </tbody>

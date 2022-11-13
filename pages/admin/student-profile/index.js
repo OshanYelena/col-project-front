@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from "next/router";
-import api from "../../api/contact";
+import api from "../../../api/contact"
 
 // components
 
-export default function CardPageVisits() {
+import Admin from "layouts/Admin.js";
+
+export default function studentManager() {
   const [company, setCompany] = useState([]);
   const [accpeted, setAccepted] = useState([]);
   const [rejected, setRejected] = useState([]);
 
-  const getCompanies = async () => {
-    let data = await api.get("/companies").then(({ data }) => {
+  const getStudents = async () => {
+    let data = await api.get("/student/registerd/all").then(({ data }) => {
       setCompany(data.pending);
       setAccepted(data.accepted);
       setRejected(data.rejected);
@@ -20,7 +22,7 @@ export default function CardPageVisits() {
   };
 
   useEffect(async () => {
-    getCompanies();
+    getStudents();
     // const data = await getCompanyDataAdmin();
     // console.log(data);
   }, []);
@@ -32,7 +34,7 @@ export default function CardPageVisits() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-base text-blueGray-700">
-                Company Registrations
+                Stuent Registrations
               </h3>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
@@ -51,16 +53,16 @@ export default function CardPageVisits() {
             <thead>
               <tr>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Company Name
+                  Student Name
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   Email
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Company Profile
+                  Student Profile
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Company State
+                  Student State
                 </th>
               </tr>
             </thead>
@@ -73,13 +75,13 @@ export default function CardPageVisits() {
                   return (
                     <tr key={data._id}>
                       <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                        {data.company.name}
+                        {data.studentDetails.name}
                       </th>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {data.company.email}
+                        {data.studentDetails.email}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <a href={"/admin/company-profile/" + data._id}>
+                        <a href={"/admin/student-profile/" + data._id}>
                           {" "}
                           <button>View Company</button>{" "}
                         </a>
@@ -105,7 +107,7 @@ export default function CardPageVisits() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-base text-blueGray-700">
-                Accepted Company Registrations
+                Accepted Student Registrations
               </h3>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
@@ -124,16 +126,16 @@ export default function CardPageVisits() {
             <thead>
               <tr>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Company Name
+                Student Name
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   Email
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Company Profile
+                Student Profile
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Company State
+                Student State
                 </th>
               </tr>
             </thead>
@@ -146,15 +148,15 @@ export default function CardPageVisits() {
                   return (
                     <tr key={data._id}>
                       <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                        {data.company.name}
+                        {data.studentDetails.name}
                       </th>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {data.company.email}
+                        {data.studentDetails.email}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         <a href={"/admin/company-profile/" + data._id}>
                           {" "}
-                          <button>View Company</button>{" "}
+                          <button>View Student</button>{" "}
                         </a>
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -176,7 +178,7 @@ export default function CardPageVisits() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-base text-blueGray-700">
-                Rejected Company Registrations
+                Rejected Student Registrations
               </h3>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
@@ -195,16 +197,16 @@ export default function CardPageVisits() {
             <thead>
               <tr>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Company Name
+                Student Name
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   Email
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Company Profile
+                Student Profile
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Company State
+                Student State
                 </th>
               </tr>
             </thead>
@@ -214,15 +216,15 @@ export default function CardPageVisits() {
                   return (
                     <tr key={data._id}>
                       <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                        {data.company.name}
+                        {data.studentDetails.name}
                       </th>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {data.company.email}
+                        {data.studentDetails.email}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <a href={"/admin/company-profile/" + data._id}>
+                        <a href={"/admin/student-profile/" + data._id}>
                           {" "}
-                          <button>View Company</button>{" "}
+                          <button>View Student</button>{" "}
                         </a>
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -243,3 +245,6 @@ export default function CardPageVisits() {
     </>
   );
 }
+
+studentManager.layout = Admin;
+

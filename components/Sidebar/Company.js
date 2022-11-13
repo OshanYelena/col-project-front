@@ -26,7 +26,8 @@ export default function Company() {
               href="#pablo"
               className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             >
-              Parttimer            </a>
+              Parttimer{" "}
+            </a>
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -53,7 +54,8 @@ export default function Company() {
                       href="#pablo"
                       className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     >
-                      Parttimer                    </a>
+                      Parttimer{" "}
+                    </a>
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -130,7 +132,7 @@ export default function Company() {
                           : "text-blueGray-300")
                       }
                     ></i>{" "}
-                     Edit Profile
+                    Edit Profile
                   </a>
                 </Link>
               </li>
@@ -147,10 +149,7 @@ export default function Company() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
                 <Link href="/company/new-job">
-                  <a
-                   
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
+                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
                     Add New Job
                   </a>
@@ -158,20 +157,23 @@ export default function Company() {
               </li>
               <li className="items-center">
                 <Link href="/adds">
-                  <a
-              
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
+                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
                     View My Job
                   </a>
                 </Link>
                 <Link href="/company/job-adds/applications">
-                  <a
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
+                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
                     Job Applications
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/company/feedback">
+                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                    <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                    View Company Feedbacks
                   </a>
                 </Link>
               </li>

@@ -167,6 +167,17 @@ export default function Company() {
                   </a>
                 </Link>
               </li>
+              <li className="items-center">
+                <Link href="/student/appied-jobs">
+                  <a
+  
+                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                  >
+                    <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                   Applied Jobs
+                  </a>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
