@@ -42,13 +42,29 @@ export default function Index() {
                 undergraduates part time career needs
               </p>
               <div className="mt-12">
-                <a
-                  href="/auth/login"
-                  target="_blank"
-                  className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-400 active:bg-blueGray-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                >
-                  Get started
-                </a>
+                {navbar ? (
+                  <>
+                    <a
+                      href={`/${navbar}/dashboard`}
+                      target="_blank"
+                      className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-400 active:bg-blueGray-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                    >
+                      Get started
+                    </a>
+                  </>
+                ) : (
+                  <>
+                         <>
+                    <a
+                      href={`/auth/login`}
+                      target="_blank"
+                      className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-400 active:bg-blueGray-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                    >
+                      Get started
+                    </a>
+                  </></>
+                )}
+
                 {/* <div className="mt-10 ml-1 bg-orange-500 text-black font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg">
                   <SearchBox />
                 </div> */}
@@ -110,7 +126,7 @@ export default function Index() {
             <div className="w-full md:w-4/12 px-4 mr-auto ml-auto mt-32 relative">
               <img
                 src="/img/Asset 2@300x-8.png"
-                style={{width:"200%" ,maxWidth: "1000px"}}
+                style={{ width: "200%", maxWidth: "1000px" }}
                 className="fab fa-github text-blueGray-700 absolute text-55  -right-100 left-auto opacity-80"
                 alt=""
               />
