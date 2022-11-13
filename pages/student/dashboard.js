@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 // components
 
@@ -7,7 +7,19 @@ import React from "react";
 import Student from "layouts/Student.js";
 import Adds from "pages/adds";
 
+import { Authaccount } from "api/authRequire";
+
+
 export default function StudentDashboard() {
+
+  useEffect(() => {
+    const data = Authaccount();
+
+    if (data !== "company") {
+      router.push(`/${data}/dashboard`);
+    }
+  },[]);
+
   return (
     <>
       <div className="flex flex-wrap">

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 // components
 
@@ -11,25 +12,38 @@ import CardSocialTraffic from "components/Cards/CardSocialTraffic.js";
 
 import Admin from "layouts/Admin.js";
 
+import { Authaccount } from "api/authRequire";
+
 export default function Dashboard() {
+  const router = useRouter();
+
+  React.useEffect(() => {
+    // checks if the user is authenticated
+    const data = Authaccount();
+
+    if (data !== "admin") {
+      router.push(`/${data}/dashboard`);
+    }
+  }, []);
   return (
     <>
-      <div className="flex flex-wrap">
-        <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-          {/* <CardLineChart /> */}
+      <>
+        {" "}
+        <div className="flex flex-wrap">
+          <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+            {/* <CardLineChart /> */}
+          </div>
+          <div className="w-full xl:w-4/12 px-4">{/* <CardBarChart /> */}</div>
         </div>
-        <div className="w-full xl:w-4/12 px-4">
-          {/* <CardBarChart /> */}
+        <div className="flex flex-wrap mt-4">
+          <div className="w-full mb-12 xl:mb-0 px-4">
+            <CardPageVisits />
+          </div>
+          <div className="w-full xl:w-4/12 px-4">
+            {/* <CardSocialTraffic /> */}
+          </div>
         </div>
-      </div>
-      <div className="flex flex-wrap mt-4">
-        <div className="w-full mb-12 xl:mb-0 px-4">
-          <CardPageVisits />
-        </div>
-        <div className="w-full xl:w-4/12 px-4">
-          {/* <CardSocialTraffic /> */}
-        </div>
-      </div>
+      </>
     </>
   );
 }
