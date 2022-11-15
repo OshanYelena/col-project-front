@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import api from "../../../../../../api/contact";
 
 import Link from "next/link";
