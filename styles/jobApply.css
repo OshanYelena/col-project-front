@@ -1,0 +1,76 @@
+@import url("//fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&display=swap");
+:root {
+  --radius-ss: 0.15rem;
+  --radius-xs: 0.5rem;
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 3rem;
+  --trans-dur: 0.3s ease-in-out;
+}
+
+body {
+  --clr-bkgrnd: hsla(225, 11%, 15%, 1);
+  --clr-bkgrnd-drk: hsla(223, 11%, 12%, 1);
+  --clr-text: hsla(0, 0%, 99%, 1);
+  --clr-border: hsla(219, 11%, 30%, 1);
+  --clr-border--active: hsla(223, 74%, 52%, 1);
+  --clr-input: hsla(222, 17%, 20%, 1);
+  --clr-label: hsla(222, 10%, 54%, 1);
+  --clr-option--hover: hsla(218, 12%, 16%, 1);
+  --clr-focus: hsla(223, 74%, 52%, 0.3);
+  --clr-tag-green: hsla(140, 70%, 48%, 1);
+  --clr-tag-green-op: hsla(140, 70%, 48%, 0.3);
+  --clr-tag-orange: hsla(32, 100%, 64%, 1);
+  --clr-tag-orange-op: hsla(32, 100%, 64%, 0.3);
+  --clr-light-dark-toggle: hsla(223, 74%, 52%, 1);
+}
+
+body.light-mode {
+  --clr-bkgrnd: hsla(220, 43%, 97%, 1);
+  --clr-bkgrnd-drk: hsla(0, 100%, 100%, 1);
+  --clr-text: hsla(225, 9%, 27%, 1);
+  --clr-border: hsla(228, 26%, 78%, 1);
+  --clr-input: hsla(0, 100%, 100%, 1);
+  --clr-tag-green: hsla(140, 70%, 18%, 1);
+  --clr-tag-green-op: hsla(140, 70%, 48%, 0.5);
+  --clr-tag-orange: hsla(32, 100%, 44%, 1);
+  --clr-tag-orange-op: hsla(32, 100%, 64%, 0.5);
+}
+
+:root {
+  --main-font: "Outfit", sans-serif;
+}
+
+body {
+  font-family: var(--main-font);
+  color: var(--clr-text);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.dribbble {
+  color: #ea4c89;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+body {
+
+
+
+  background-color: var(--clr-bkgrnd);
+
+
+}
