@@ -24,13 +24,13 @@ export default function FooterSmall(props) {
             <div className="w-full md:w-8/12 px-4">
               <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                 <li>
-                  <a className="text-white hover:text-blueGray-300 text-sm font-semibold py-1">
+                  <a className="text-orange-500 hover:text-blueGray-300 text-sm font-semibold py-1">
                     Parttimer.lk
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://www.creative-tim.com/presentation?ref=nnjs-footer-small"
+                    // href="https://www.creative-tim.com/presentation?ref=nnjs-footer-small"
                     className="text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
                   >
                     About Us

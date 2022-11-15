@@ -70,15 +70,15 @@ const JobApplyId = () => {
               <div className="container px-4 h-full">
                 <div className="flex items-center justify-center">
                   <div className="">
-                    <div className="relative mt-10 flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+                    <div className="relative mt-10 flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-orange-500 border-0">
                       <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                        <div className="text-blueGray-400 text-center mt-10 mb-3 font-bold">
+                        <div className="text-black text-lg text-center mt-10 mb-3 font-bold">
                           <p className="text-lg">Apply to this job</p>
                         </div>
                         <form onSubmit={onSubmit}>
                           <div className="relative w-full mb-3">
                             <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              className="block uppercase text-white text-xs font-bold mb-2"
                               htmlFor="grid-password"
                             >
                               Email
@@ -92,7 +92,7 @@ const JobApplyId = () => {
                           </div>
                           <div className="relative w-full mb-3">
                             <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              className="block uppercase text-white text-xs font-bold mb-2"
                               htmlFor="grid-password"
                             >
                               Student Name
@@ -107,7 +107,7 @@ const JobApplyId = () => {
 
                           <div className="relative w-full mb-3">
                             <label
-                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              className="block uppercase text-white text-xs font-bold mb-2"
                               htmlFor="grid-password"
                             >
                               Submit Your CV
@@ -147,15 +147,15 @@ const JobApplyId = () => {
           <div className="container px-4 h-full">
             <div className="flex items-center justify-center">
               <div className="">
-                <div className="relative mt-10 flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+                <div className="relative mt-10 flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-orange-500 border-0">
                   <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <div className="text-blueGray-400 text-center mt-10 mb-3 font-bold">
+                    <div className="text-black text-lg text-center mt-10 mb-3 font-bold">
                       <p className="text-lg">
                         You Have Applied to this Job Vacancy
                       </p>
 
                       <p>
-                        <Link href={"/student/appied-jobs"}>
+                        <Link  href={"/student/appied-jobs"}>
                           Check Your Application status
                         </Link>
                       </p>

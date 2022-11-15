@@ -1,6 +1,6 @@
 const SvgLoaders = () => {
   return (
-    <div className="text-center">
+    <div id="svg-loader" className="text-center">
       <svg
         version="1.1"
         id="L6"

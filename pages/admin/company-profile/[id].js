@@ -12,6 +12,7 @@ import { getCompanyDataAdmin } from "api/companydata.js";
 // layout for page
 
 import Admin from "layouts/Admin.js";
+import LoadingPage from "components/PageChange/LoadingPage";
 
 export default function Settings() {
   const router = useRouter();
@@ -46,7 +47,7 @@ export default function Settings() {
 
   return (
     <>
-      {data && (
+      {data ? (
         <div className="flex flex-wrap">
           <div className="w-full lg:w-8/12 px-4">
             <>
@@ -249,7 +250,7 @@ export default function Settings() {
             </>
           </div>
         </div>
-      )}
+      ): <LoadingPage/>}
     </>
   );
 }

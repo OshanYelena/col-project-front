@@ -48,7 +48,7 @@ export default function Navbar(props = "black")  {
             </ul> */}
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
-                <IndexDropdown />
+                {/* <IndexDropdown /> */}
               </li>
               {/* <li className="flex items-center">
                 <a
@@ -74,7 +74,7 @@ export default function Navbar(props = "black")  {
               <li className="flex items-center">
                 <Link href={'/auth/register'}>
                 <button
-                  className="bg-blueGray-700 text-white active:bg-blueGray-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                  className="bg-orange-500 text-white active:bg-blueGray-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
                   <i className="fas fa-arrow-alt-circle-down"></i> Sign In
@@ -85,7 +85,7 @@ export default function Navbar(props = "black")  {
               <li className="flex items-center">
                 <Link href={'/auth/login'}>
                 <button
-                  className="bg-blueGray-700 text-white active:bg-blueGray-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                  className="bg-orange-500 text-white active:bg-blueGray-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
                   <i className="fas fa-arrow-alt-circle-down"></i> Log In

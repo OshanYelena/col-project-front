@@ -8,6 +8,7 @@ import Company from "layouts/Company.js";
 import api from "../../api/contact";
 import { getData } from "api/companydata";
 import Footer from "components/Footers/Footer.js";
+import LoadingPage from "components/PageChange/LoadingPage";
 
 export const Reports = ({ deleteAdd }) => {
   const [report, setReportData] = useState([]);
@@ -42,7 +43,7 @@ export const Reports = ({ deleteAdd }) => {
 
   return (
     <>
-      <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
+    {report ? (<>      <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
         <div className="container mx-auto items-center flex flex-wrap">
           {report.length !== 0 &&
             report.map((data) => {
@@ -80,8 +81,9 @@ export const Reports = ({ deleteAdd }) => {
             </div>
           )}
         </div>
-      </section>
-      <Footer />
+      </section></>): (<> <LoadingPage/></>)}
+
+
     </>
   );
 };

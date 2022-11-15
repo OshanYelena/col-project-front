@@ -10,6 +10,7 @@ import CardProfile from "components/Cards/CardProfile.js";
 import Student from "layouts/Student.js";
 import { getData } from "api/companydata.js";
 import { get } from "react-hook-form";
+import LoadingPage from "components/PageChange/LoadingPage";
 
 export default function StudentProfile() {
 
@@ -56,7 +57,7 @@ export default function StudentProfile() {
 
   return (
     <>
-      {data && (
+      {data ? (
         <div className="flex flex-wrap">
           <div className="w-full lg:w-8/12 px-4">
             <>
@@ -64,7 +65,7 @@ export default function StudentProfile() {
               <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
                 <div className="rounded-t bg-white mb-0 px-6 py-6">
                   <div className="text-center flex justify-between">
-                    <h6 className="text-blueGray-700 text-xl font-bold">
+                    <h6 className="text-orange-500 text-xl font-bold">
                       My account
                     </h6>
                     {/* <button
@@ -258,7 +259,7 @@ export default function StudentProfile() {
                       </div>
                     </div>
                     <div className="w-full px-4 text-center mt-20">
-                      <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                      {/* <div className="flex justify-center py-4 lg:pt-4 pt-8">
                         <div className="mr-4 p-3 text-center">
                           <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                             22
@@ -283,7 +284,7 @@ export default function StudentProfile() {
                             Comments
                           </span>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div className="text-center mt-12">
@@ -328,7 +329,7 @@ export default function StudentProfile() {
             </>
           </div>
         </div>
-      )}
+      ): (<LoadingPage/>)}
     </>
   );
 }

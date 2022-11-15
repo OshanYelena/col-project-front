@@ -17,6 +17,14 @@ import 'styles/imageFade.css'
 import 'styles/policy.css'
 import 'styles/jobPost.css'
 import 'styles/card.css'
+import 'styles/Calendar.css'
+import 'styles/DatePicker.css'
+import 'styles/Clock.css'
+import 'styles/jobApply.css'
+
+
+
+
 
 
 Router.events.on("routeChangeStart", (url) => {

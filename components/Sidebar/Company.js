@@ -10,7 +10,7 @@ export default function Company() {
   const router = useRouter();
   return (
     <>
-      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-orange-300 flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           {/* Toggler */}
           <button
@@ -22,12 +22,11 @@ export default function Company() {
           </button>
           {/* Brand */}
           <Link href="/">
-            <a
-              href="#pablo"
-              className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+            <p
+              className="md:block text-left md:pb-2 text-center text-orange-500 mr-0 inline-block whitespace-nowrap text-lg uppercase font-bold p-4 px-0"
             >
               Parttimer{" "}
-            </a>
+            </p>
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -50,12 +49,12 @@ export default function Company() {
               <div className="flex flex-wrap">
                 <div className="w-6/12">
                   <Link href="/">
-                    <a
-                      href="#pablo"
+                    <p
+     
                       className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     >
                       Parttimer{" "}
-                    </a>
+                    </p>
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -91,13 +90,13 @@ export default function Company() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
                 <Link href="/company/dashboard/">
-                  <a
-                    href="#pablo"
+                  <p
+
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        : "text-white hover:text-blueGray-500")
                     }
                   >
                     <i
@@ -105,23 +104,23 @@ export default function Company() {
                         "fas fa-tv mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/dashboard") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-orange-500")
                       }
                     ></i>{" "}
                     Dashboard
-                  </a>
+                  </p>
                 </Link>
               </li>
 
               <li className="items-center">
                 <Link href="/company/profile">
-                  <a
-                    href="#pablo"
+                  <p
+       
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/settings") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        : "text-white hover:text-blueGray-500")
                     }
                   >
                     <i
@@ -129,11 +128,11 @@ export default function Company() {
                         "fas fa-tools mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/settings") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-orange-500")
                       }
                     ></i>{" "}
                     Edit Profile
-                  </a>
+                  </p>
                 </Link>
               </li>
             </ul>
@@ -149,32 +148,32 @@ export default function Company() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
                 <Link href="/company/new-job">
-                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-                    <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  <p className="text-white hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                    <i className="fas fa-fingerprint  text-orange-500 mr-2 text-sm"></i>{" "}
                     Add New Job
-                  </a>
+                  </p>
                 </Link>
               </li>
               <li className="items-center">
                 <Link href="/adds">
-                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-                    <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  <p className="text-white hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                    <i className="fas fa-fingerprint  text-orange-500 mr-2 text-sm"></i>{" "}
                     View My Job
-                  </a>
+                  </p>
                 </Link>
                 <Link href="/company/job-adds/applications">
-                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-                    <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  <p className="text-white hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                    <i className="fas fa-fingerprint  text-orange-500 mr-2 text-sm"></i>{" "}
                     Job Applications
-                  </a>
+                  </p>
                 </Link>
               </li>
               <li className="items-center">
                 <Link href="/company/feedback">
-                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-                    <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  <p className="text-white hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                    <i className="fas fa-fingerprint  text-orange-500 mr-2 text-sm"></i>{" "}
                     View Company Feedbacks
-                  </a>
+                  </p>
                 </Link>
               </li>
             </ul>

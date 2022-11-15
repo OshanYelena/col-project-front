@@ -10,7 +10,7 @@ export default function Sidebar() {
   const router = useRouter();
   return (
     <>
-      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl  flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           {/* Toggler */}
           <button
@@ -22,11 +22,11 @@ export default function Sidebar() {
           </button>
           {/* Brand */}
           <Link href="/">
-            <a
-              href="#pablo"
-              className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+            <p
+              
+              className="md:block text-lg text-center text-left md:pb-2 text-orange-500 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             >
-              Parttimer            </a>
+              Parttimer     </p>
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -49,11 +49,11 @@ export default function Sidebar() {
               <div className="flex flex-wrap">
                 <div className="w-6/12">
                   <Link href="/">
-                    <a
-                      href="#pablo"
+                    <p
+                   
                       className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     >
-                      Parttimer                    </a>
+                      Parttimer                    </p>
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -73,7 +73,7 @@ export default function Sidebar() {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+                  className="border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600  rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
                 />
               </div>
             </form>
@@ -89,13 +89,13 @@ export default function Sidebar() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
                 <Link href="/admin/dashboard">
-                  <a
-                    href="#pablo"
+                  <p
+                
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        ? "text-orange-500 hover:text-lightBlue-600"
+                        : "text-orange-500 hover:text-blueGray-500")
                     }
                   >
                     <i
@@ -103,48 +103,48 @@ export default function Sidebar() {
                         "fas fa-tv mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/dashboard") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-orange-500")
                       }
                     ></i>{" "}
                     Dashboard
-                  </a>
+                  </p>
                 </Link>
               </li>
             </ul>
 
             {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
+            {/* <hr className="my-4 md:min-w-full" /> */}
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+            {/* <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Auth Layout Pages
-            </h6>
+            </h6> */}
             {/* Navigation */}
 
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+            {/* <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
                 <Link href="/auth/login">
-                  <a
-                    href="#pablo"
+                  <p
+                  
                     className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                   >
                     <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
                     Login
-                  </a>
+                  </p>
                 </Link>
               </li>
 
               <li className="items-center">
                 <Link href="/auth/register">
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                  <p
+              
+                    className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                   >
                     <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
                     Register
-                  </a>
+                  </p>
                 </Link>
               </li>
-            </ul>
+            </ul> */}
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
@@ -159,48 +159,48 @@ export default function Sidebar() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="inline-flex">
               <Link href="/admin/dashboard">
-                  <a
+                  <p
      
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                   >
                     <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
                     Company Registration Manager
-                  </a>
+                  </p>
                 </Link>
               </li>
               <li className="inline-flex">
               <Link href="/admin/student-profile">
-                  <a
+                  <p
      
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                   >
                     <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
                     Student Registration Manager
-                  </a>
+                  </p>
                 </Link>
               </li>
 
               <li className="inline-flex">
               <Link href="/admin/adds">
-                  <a
+                  <p
      
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                   >
                     <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
                     Adds Manager
-                  </a>
+                  </p>
                 </Link>
               </li>
 
               <li className="inline-flex">
               <Link href="/admin/reports">
-                  <a
+                  <p
      
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                   >
                     <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
                    Report Manager
-                  </a>
+                  </p>
                 </Link>
               </li>
 

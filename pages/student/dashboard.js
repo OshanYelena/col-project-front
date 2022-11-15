@@ -6,11 +6,13 @@ import React, {useEffect} from "react";
 
 import Student from "layouts/Student.js";
 import Adds from "pages/adds";
+import { useRouter } from "next/router";
 
 import { Authaccount } from "api/authRequire";
 
 
 export default function StudentDashboard() {
+  const router = useRouter();
 
   useEffect(() => {
     const data = Authaccount();

@@ -212,7 +212,7 @@ div.row table tr td.snip {
   }
   
   .editor{
-    background-color: lavender;
+    /* background-color: lavender; */
     margin-left: 30px;
     font-size: 1rem ;
   }
@@ -220,7 +220,7 @@ div.row table tr td.snip {
 .blockquote {
     padding: 1.25rem;
     border: 1px solid #ebedf2;
-    background-color: lavender;
+    /* background-color: lavender; */
     margin-bottom: 1rem;
     font-size: 1.25rem;
   
@@ -335,7 +335,7 @@ svg h1 b {
 }
 
 .jobtitle {
-    font-size: 1.125rem;
+    font-size: 2rem;
 
 }
 .company, .location  {

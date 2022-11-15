@@ -40,7 +40,7 @@
   
   button[type="submit"],
   input[type="submit"] {
-    background: #ec5990;
+    background: #000000;
     color: white;
     text-transform: uppercase;
     border: none;
@@ -53,7 +53,7 @@
   
   button[type="submit"]:hover,
   input[type="submit"]:hover {
-    background: #bf1650;
+    background: #ff0000;
   }
   
   button[type="submit"]:active,

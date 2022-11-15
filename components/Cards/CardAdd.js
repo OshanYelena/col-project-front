@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-
-import { get, useForm } from "react-hook-form";
+import Select from "react-select";
+import { useForm } from "react-hook-form";
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
@@ -16,6 +16,21 @@ import fb from "../../config/firebase";
 import { getData } from "api/companydata";
 
 // components
+const options = [
+  { value: "Graphics & Design", label: "Graphics & Design" },
+  { value: "Writing & Translation", label: "Writing & Translation" },
+  { value: "Music & Audio", label: "Music & Audio" },
+
+  { value: "Business", label: "Business" },
+
+  { value: "Digital Marketing", label: "Digital Marketing" },
+
+  { value: "Video & Animation", label: "Video & Animation" },
+
+  { value: "Programming & Tech", label: "Programming & Tech" },
+  { value: "Lifestyle", label: "Lifestyle" },
+  { value: "Data", label: "Data" },
+];
 
 export default function CardAdd() {
   const {
@@ -120,11 +135,18 @@ export default function CardAdd() {
   };
 
   const onChange = async (e) => {
-    e.preventDefault();
-    setAddData({
-      ...addData,
-      [e.target.id]: e.target.value,
-    });
+    if (e.target) {
+      e.preventDefault();
+      setAddData({
+        ...addData,
+        [e.target.id]: e.target.value,
+      });
+    } else {
+      setAddData({
+        jobCategory: e.value,
+      });
+    }
+
     console.log(addData);
   };
 
@@ -140,16 +162,16 @@ export default function CardAdd() {
       <div className=" relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
         {upload && submitted ? (
           <>
-            <div className="rounded-t bg-white mb-0 px-6 py-6">
+            {/* <div className="rounded-t bg-white mb-0 px-6 py-6">
               <div className="text-center flex justify-between">
                 <button className="button-header bg-orange-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
                   <h3 className="title">Job Application Form</h3>
                 </button>
               </div>
-            </div>
-            <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+            </div> */}
+            <div className="flex-auto mt-10 px-4 lg:px-10 py-10 pt-0">
               <form onSubmit={handleSubmit(onSubmit)}>
-                <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                <h6 className="text-orange-500 text-lg mt-3 mb-6 font-bold uppercase">
                   Job Information
                 </h6>
                 <div className="flex flex-wrap">
@@ -161,7 +183,7 @@ export default function CardAdd() {
                       <input
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         id="jobTitle"
-                        placeholder="lucky.jesse"
+                        placeholder="Software Engineering"
                         type={"text"}
                         {...register("jobTitle", {
                           required: true,
@@ -191,7 +213,13 @@ export default function CardAdd() {
                       >
                         Job Category
                       </label>
-                      <input
+                      <Select
+                        id="gender"
+                        className="no-svg border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        options={options}
+                        onChange={onChange}
+                      />
+                      {/* <input
                         id="jobCategory"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={onChange}
@@ -204,7 +232,7 @@ export default function CardAdd() {
                       />
                       {errors.jobCategory && (
                         <p className="error">This field is required</p>
-                      )}
+                      )} */}
                     </div>
                   </div>
                   <div className="w-full lg:w-6/12 px-4">
@@ -219,7 +247,7 @@ export default function CardAdd() {
                         id="jobType"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={onChange}
-                        placeholder="jobType"
+                        value={"Part-Time"}
                         type="text"
                         {...register("jobType", {
                           required: true,
@@ -231,7 +259,7 @@ export default function CardAdd() {
                       )}
                     </div>
                   </div>
-                  <div className="w-full lg:w-6/12 px-4">
+                  <div className=" px-4">
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -244,14 +272,18 @@ export default function CardAdd() {
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={onChange}
                         placeholder="time"
-                        type="text"
+                        type="time"
                         {...register("time", {
                           required: true,
                           onChange: onChange,
+                          max: "20.00",
                         })}
                       />
                       {errors.time && (
                         <p className="error">This field is required</p>
+                      )}
+                      {errors.password?.type === "max" && (
+                        <p className="error">Job Should be </p>
                       )}
                     </div>
                   </div>
@@ -303,7 +335,7 @@ export default function CardAdd() {
                     </div>
                   </div>
 
-                  <div className="w-full lg:w-6/12 px-4">
+                  <div className="px-4">
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -316,7 +348,7 @@ export default function CardAdd() {
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={onChange}
                         placeholder="date"
-                        type="text"
+                        type="date"
                         {...register("date", {
                           required: true,
                           onChange: onChange,
@@ -331,7 +363,7 @@ export default function CardAdd() {
 
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
 
-                <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                <h6 className="text-orange-500 text-lg mt-3 mb-6 font-bold uppercase">
                   Locations
                 </h6>
                 <div className="flex flex-wrap">
@@ -387,7 +419,7 @@ export default function CardAdd() {
 
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
 
-                <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                <h6 className="text-orange-500 text-lg mt-3 mb-6 font-bold uppercase">
                   Job Description
                 </h6>
                 <div className="flex flex-wrap">

@@ -10,7 +10,7 @@ export default function Company() {
   const router = useRouter();
   return (
     <>
-      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl  flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           {/* Toggler */}
           <button
@@ -22,11 +22,9 @@ export default function Company() {
           </button>
           {/* Brand */}
           <Link href="/">
-            <a
-              href="#pablo"
-              className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-            >
-              Parttimer            </a>
+            <p className="md:block text-lg text-center text-left md:pb-2 text-orange-500 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+              Parttimer{" "}
+            </p>
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -49,11 +47,9 @@ export default function Company() {
               <div className="flex flex-wrap">
                 <div className="w-6/12">
                   <Link href="/">
-                    <a
-                      href="#pablo"
-                      className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                    >
-                      Parttimer                    </a>
+                    <p className="md:block text-left md:pb-2 text-orange-500 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+                      Parttimer{" "}
+                    </p>
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -73,7 +69,7 @@ export default function Company() {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+                  className="border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600  rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
                 />
               </div>
             </form>
@@ -82,20 +78,19 @@ export default function Company() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-             Student Layout
+              Student Layout
             </h6>
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
                 <Link href="/student/dashboard">
-                  <a
-                    href="#pablo"
+                  <p
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        : "text-orange-500 hover:text-blueGray-500")
                     }
                   >
                     <i
@@ -103,23 +98,22 @@ export default function Company() {
                         "fas fa-tv mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/dashboard") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-orange-500")
                       }
                     ></i>{" "}
                     Dashboard
-                  </a>
+                  </p>
                 </Link>
               </li>
 
               <li className="items-center">
                 <Link href="/student/profile">
-                  <a
-                    href="#pablo"
+                  <p
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/settings") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        : "text-orange-500 hover:text-blueGray-500")
                     }
                   >
                     <i
@@ -127,11 +121,11 @@ export default function Company() {
                         "fas fa-tools mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/settings") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-orange-500")
                       }
                     ></i>{" "}
-                     Edit Profile
-                  </a>
+                    Edit Profile
+                  </p>
                 </Link>
               </li>
             </ul>
@@ -147,7 +141,7 @@ export default function Company() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               {/* <li className="items-center">
                 <Link href="/company/new-job">
-                  <a
+                  <p
                     href="#pablo"
                     className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                   >
@@ -158,24 +152,18 @@ export default function Company() {
               </li> */}
               <li className="items-center">
                 <Link href="/adds">
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
+                  <p className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
                     View Job Adds
-                  </a>
+                  </p>
                 </Link>
               </li>
               <li className="items-center">
                 <Link href="/student/appied-jobs">
-                  <a
-  
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
+                  <p className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                   Applied Jobs
-                  </a>
+                    Applied Jobs
+                  </p>
                 </Link>
               </li>
             </ul>

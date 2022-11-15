@@ -43,12 +43,12 @@ const JobApplyId = () => {
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-6/12 px-4">
-            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-orange-500 border-0">
               {submit ? (
                 <>
                   <div className="text-center text-lg rounded-t mb-0 px-6 py-6">
                     <div className="text-center mb-3">
-                      <h6 className="text-blueGray-500 text-lg text-sm font-bold">
+                      <h6 className="text-black text-lg text-sm font-bold">
                         Give your feedback on this job
                       </h6>
                     </div>
@@ -80,7 +80,7 @@ const JobApplyId = () => {
                 <>
                   <div className="text-center text-lg rounded-t mb-0 px-6 py-6">
                     <div className="text-center mb-3">
-                      <h6 className="text-blueGray-500 text-lg text-sm font-bold">
+                      <h6 className="text-black text-lg text-sm font-bold">
                         Thanks For Your FeedBack
                       </h6>
                     </div>
