@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import api from "../../../../../../api/contact";
 
 import Link from "next/link";
 
+import { useRouter } from "next/router";
+import { Authaccount } from "api/authRequire";
+
 import Page from "layouts/Pages.js";
 
 const JobApplyId = () => {
+  const router = useRouter();
+
   const [submit, setSubmit] = useState(true);
   const [review, setReview] = useState("");
   const { query } = useRouter();
@@ -32,6 +37,13 @@ const JobApplyId = () => {
       setSubmit(false);
     }
   };
+  useEffect(() => {
+    const data = Authaccount();
+
+    if (data !== "student") {
+      router.push(`/${data}/dashboard`);
+    }
+  });
 
   const onChange = async (e) => {
     e.preventDefault();

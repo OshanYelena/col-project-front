@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import api from "../../../../../../api/contact";
 
@@ -7,6 +7,8 @@ import Link from "next/link";
 import Page from "layouts/Pages.js";
 
 const ReportSubmit = () => {
+  const router = useRouter();
+
   const [submit, setSubmit] = useState(true);
   const [message, setMessage] = useState("");
   const { query } = useRouter();
@@ -31,6 +33,14 @@ const ReportSubmit = () => {
       setSubmit(false);
     }
   };
+
+  useEffect(() => {
+    const data = Authaccount();
+
+    if (data !== "company") {
+      router.push(`/${data}/dashboard`);
+    }
+  });
 
   const onChange = async (e) => {
     e.preventDefault();

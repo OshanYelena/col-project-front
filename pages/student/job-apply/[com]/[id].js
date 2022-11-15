@@ -4,18 +4,20 @@ import api from "../../../../api/contact";
 import fb from "config/firebase";
 
 import Link from "next/link";
+import { Authaccount } from "api/authRequire";
 
 import Page from "layouts/Pages.js";
 import { getData, existApplication } from "api/companydata";
 
 const JobApplyId = () => {
+  const router = useRouter();
+
   const [application, setApplication] = useState(false);
   const [userData, setUserData] = useState({});
   const [loader, setUrloader] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [cvUrl, setcvUrl] = useState("");
   const { query } = useRouter();
-
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -42,6 +44,12 @@ const JobApplyId = () => {
   };
 
   useEffect(async () => {
+    const data = Authaccount();
+
+    if (data !== "student") {
+      router.push(`/${data}/dashboard`);
+    }
+
     const userData = await getData();
     console.log(userData);
     getUserData(userData);
@@ -155,7 +163,7 @@ const JobApplyId = () => {
                       </p>
 
                       <p>
-                        <Link  href={"/student/appied-jobs"}>
+                        <Link href={"/student/appied-jobs"}>
                           Check Your Application status
                         </Link>
                       </p>

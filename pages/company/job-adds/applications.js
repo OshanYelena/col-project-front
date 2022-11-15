@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import {useRouter} from "next/router";
+import { Authaccount } from "api/authRequire";
 
 import Company from "layouts/Company.js";
 import Link from "next/link";
@@ -17,6 +19,8 @@ import TableDropdown from "components/Dropdowns/TableDropdown.js";
 import LoadingPage from "components/PageChange/LoadingPage";
 
 const Applications = (color = "dark") => {
+  const router = useRouter();
+
   const [application, setApplication] = useState([]);
   const [remove, setRemove] = useState(false);
   const [addId, setAddId] = useState();
@@ -53,10 +57,15 @@ const Applications = (color = "dark") => {
     console.log(data);
   };
   useEffect(async () => {
+    const dataType = Authaccount();
+
+    if (dataType !== "company") {
+      router.push(`/${dataType}/dashboard`);
+    }
     const data = await getData();
-    // console.log(data._id)
+
     applications(data._id);
-    // setComapnyId(data._id);
+ 
   }, []);
 
   return (

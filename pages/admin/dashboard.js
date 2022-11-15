@@ -12,7 +12,6 @@ import CardSocialTraffic from "components/Cards/CardSocialTraffic.js";
 
 import Admin from "layouts/Admin.js";
 
-import LoadingPage from "components/PageChange/LoadingPage";
 
 import { Authaccount } from "api/authRequire";
 
@@ -22,7 +21,6 @@ export default function Dashboard() {
   React.useEffect(() => {
     // checks if the user is authenticated
     const data = Authaccount();
-
     if (data !== "admin") {
       router.push(`/${data}/dashboard`);
     }
@@ -39,7 +37,6 @@ export default function Dashboard() {
         </div>
         <div className="flex flex-wrap mt-4">
           <div className="w-full mb-12 xl:mb-0 px-4">
-
             <CardPageVisits />
           </div>
           <div className="w-full xl:w-4/12 px-4">

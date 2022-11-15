@@ -2,21 +2,25 @@ import React, { useEffect } from "react";
 
 // components
 
+import { useRouter } from "next/router";
+import { Authaccount } from "api/authRequire";
+
 // layout for page
 
 import Adds from "pages/adds";
 
 import Company from "layouts/Company.js";
-import { Authaccount } from "api/authRequire";
 
 export default function CompanyDashboard() {
+  const router = useRouter();
+
   useEffect(() => {
     const data = Authaccount();
 
     if (data !== "company") {
       router.push(`/${data}/dashboard`);
     }
-  },[]);
+  }, []);
 
   return (
     <>

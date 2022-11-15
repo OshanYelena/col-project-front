@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 // components
+import { useRouter } from "next/router";
+import { Authaccount } from "api/authRequire";
 
 import CardSettings from "components/Cards/CardSettings.js";
 import CardProfile from "components/Cards/CardProfile.js";
@@ -13,12 +15,18 @@ import Company from "layouts/Company.js";
 import LoadingPage from "components/PageChange/LoadingPage";
 
 export default function Settings() {
+  const router = useRouter();
+
   const [data, setData] = useState({});
   const [edit, setEdit] = useState(true);
   const [url, setUrl] = useState();
 
   useEffect(async () => {
-    // getData();
+    const data = Authaccount();
+
+    if (data !== "company") {
+      router.push(`/${data}/dashboard`);
+    }
     const dataLoad = await getData();
     console.log(dataLoad);
     setUrl(dataLoad.urls);

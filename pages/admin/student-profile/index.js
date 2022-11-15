@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-// import { Link } from "next/router";
+
 import api from "../../../api/contact";
 
 // components
+import {useRouter} from "next/router";
+import { Authaccount } from "api/authRequire";
 
 import Admin from "layouts/Admin.js";
 import LoadingPage from "components/PageChange/LoadingPage";
 
 export default function studentManager() {
+  const router = useRouter();
   const [company, setCompany] = useState([]);
   const [accpeted, setAccepted] = useState([]);
   const [rejected, setRejected] = useState([]);
@@ -24,6 +27,11 @@ export default function studentManager() {
 
   useEffect(async () => {
     getStudents();
+    const data = Authaccount();
+
+    if (data !== "admin") {
+      router.push(`/${data}/dashboard`);
+    }
     // const data = await getCompanyDataAdmin();
     // console.log(data);
   }, []);
@@ -70,7 +78,7 @@ export default function studentManager() {
                     </th>
                   </tr>
                 </thead>
-                {company && (
+                {company ? (
                   <tbody>
                     {company.map((data) => {
                       {
@@ -101,7 +109,7 @@ export default function studentManager() {
                       );
                     })}
                   </tbody>
-                )}
+                ): (<> <LoadingPage/></>)}
               </table>
             </div>
           </div>
@@ -142,8 +150,8 @@ export default function studentManager() {
                     </th>
                   </tr>
                 </thead>
-                {accpeted && (
-                  <tbody>
+                {accpeted ? (
+                  <tbody >
                     {accpeted.map((data) => {
                       {
                         console.log(data);
@@ -173,7 +181,7 @@ export default function studentManager() {
                       );
                     })}
                   </tbody>
-                )}
+                ): (<> <LoadingPage/></>) }
               </table>
             </div>
           </div>
@@ -214,7 +222,7 @@ export default function studentManager() {
                     </th>
                   </tr>
                 </thead>
-                {rejected && (
+                {rejected ? (
                   <tbody>
                     {rejected.map((data) => {
                       return (
@@ -244,7 +252,7 @@ export default function studentManager() {
                       );
                     })}
                   </tbody>
-                )}
+                ): (<><LoadingPage/></>)}
               </table>
             </div>
           </div>

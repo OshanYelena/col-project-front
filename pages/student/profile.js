@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 // components
 
-import CardSettings from "components/Cards/CardSettings.js";
-import CardProfile from "components/Cards/CardProfile.js";
+import {useRouter} from "next/router";
+import { Authaccount } from "api/authRequire";
 
 // layout for page
 
@@ -13,12 +13,16 @@ import { get } from "react-hook-form";
 import LoadingPage from "components/PageChange/LoadingPage";
 
 export default function StudentProfile() {
-
+  const router = useRouter();
   const [data, setData] = useState({});
   const [edit, setEdit] = useState(true);
 
   useEffect(async () => {
-    // getData();
+    const data = Authaccount();
+
+    if (data !== "student") {
+      router.push(`/${data}/dashboard`);
+    }
     const dataLoad = await getData();
     setData(dataLoad.studentDetails);
   }, []);

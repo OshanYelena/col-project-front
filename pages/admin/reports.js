@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 // import { Link } from "next/router";
 import api from "../../api/contact";
 import Link from "next/link";
+
+import {useRouter} from "next/router";
+import { Authaccount } from "api/authRequire";
+
 import Admin from "layouts/Admin.js";
 import LoadingPage from "components/PageChange/LoadingPage";
 // components
 
 export default function Report() {
+  const router = useRouter();
+
   const [reports, setReports] = useState([]);
 
   const getCompanies = async () => {
@@ -22,6 +28,11 @@ export default function Report() {
   };
 
   useEffect(async () => {
+    const data = Authaccount();
+
+    if (data !== "admin") {
+      router.push(`/${data}/dashboard`);
+    }
     getCompanies();
     getReports();
     // const data = await getCompanyDataAdmin();

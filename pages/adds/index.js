@@ -29,6 +29,7 @@ export const Adds = ({ deleteAdd }) => {
   const [remove, setRemove] = useState(false);
   const [addId, setAddId] = useState();
   const [rot, cutrou] = useState("");
+  const [load, setLoad] = useState(false);
   const [url, setUrl] = useState();
 
   const router = useRouter();
@@ -47,8 +48,7 @@ export const Adds = ({ deleteAdd }) => {
         },
       })
       .then(({ data }) => data);
-
-    console.log("uasgd", data.jobPosts);
+    setLoad(true);
     setJobData(data.jobPosts);
   };
 
@@ -56,7 +56,7 @@ export const Adds = ({ deleteAdd }) => {
     let data = await api
       .get("/company/job/all-adds", {})
       .then(({ data }) => data);
-    console.log("uasgd", data.jobPosts);
+    setLoad(true);
     setJobData(data.jobPosts);
   };
 
@@ -82,7 +82,7 @@ export const Adds = ({ deleteAdd }) => {
 
       {rot === "/company/dashboard"  && navbar === "company" && <CompanyNavbar />} */}
       {!navbar && <IndexNavbar fixed />}
-      {jobData ? (
+      {load === true ? (
         <>
           <section className="header img-banner relative pt-16 items-center flex h-screen max-h-860-px">
             <div className="container mx-auto items-center flex flex-wrap">

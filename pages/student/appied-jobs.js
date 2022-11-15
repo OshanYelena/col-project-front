@@ -12,11 +12,13 @@ import api from "../../api/contact";
 import { getData } from "api/companydata";
 
 // components
+import {useRouter} from "next/router";
+import { Authaccount } from "api/authRequire";
 
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
 import LoadingPage from "components/PageChange/LoadingPage";
 
 const ApplicationsStudent = (color = "dark") => {
+  const router = useRouter();
   const [application, setApplication] = useState([]);
   const [studentId, setStudentId] = useState("");
   const [companyId, setCompanyId] = useState("");
@@ -39,6 +41,13 @@ const ApplicationsStudent = (color = "dark") => {
   };
 
   useEffect(async () => {
+
+    const daatType = Authaccount();
+
+    if (daatType !== "student") {
+      router.push(`/${daatType}/dashboard`);
+    }
+
     const data = await getData();
     console.log(data);
     applications(data._id);

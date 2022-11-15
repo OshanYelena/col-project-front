@@ -3,6 +3,9 @@ import dynamic from "next/dynamic";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
 
+import { useRouter } from "next/router";
+import { Authaccount } from "api/authRequire";
+
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
@@ -33,6 +36,8 @@ const options = [
 ];
 
 export default function CardAdd() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -50,6 +55,12 @@ export default function CardAdd() {
   const [companyId, setComId] = useState("");
 
   useEffect(async () => {
+    const dataType = Authaccount();
+
+    if (dataType !== "company") {
+      router.push(`/${dataType}/dashboard`);
+    }
+
     htmlParser();
     const data = await getData();
     setComName(data.company.name);
