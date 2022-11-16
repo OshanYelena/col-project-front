@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
+import Select from "react-select";
+
 import Auth from "layouts/Auth.js";
 import api from "../../api/contact";
 import { getData } from "api/companydata";
@@ -24,6 +26,22 @@ const Navbar = () => {
   }
 };
 
+const options = [
+  { value: "Graphics & Design", label: "Graphics & Design" },
+  { value: "Writing & Translation", label: "Writing & Translation" },
+  { value: "Music & Audio", label: "Music & Audio" },
+
+  { value: "Business", label: "Business" },
+
+  { value: "Digital Marketing", label: "Digital Marketing" },
+
+  { value: "Video & Animation", label: "Video & Animation" },
+
+  { value: "Programming & Tech", label: "Programming & Tech" },
+  { value: "Lifestyle", label: "Lifestyle" },
+  { value: "Data", label: "Data" },
+];
+
 export const Adds = ({ deleteAdd }) => {
   const [jobData, setJobData] = useState([]);
   const [remove, setRemove] = useState(false);
@@ -31,12 +49,19 @@ export const Adds = ({ deleteAdd }) => {
   const [rot, cutrou] = useState("");
   const [load, setLoad] = useState(false);
   const [url, setUrl] = useState();
+  const [query, setQuery] = useState("");
+  const [jobDel, setDelete] = useState(false)
 
   const router = useRouter();
 
   const addDelete = async (_id) => {
     let data = await api.delete(`/company/add/${_id}`).then(({ data }) => data);
-    console.log(data);
+    if(data.message === "forum Deleted"){
+      setDelete(true);
+      alert("job Has removed");
+      setDelete(false)
+      
+    }
   };
 
   const getcomAdds = async (comName) => {
@@ -72,7 +97,17 @@ export const Adds = ({ deleteAdd }) => {
     } else {
       getAdds();
     }
-  }, []);
+  }, [jobDel]);
+
+  const onChange = async (e) => {
+    setQuery(e.value);
+    console.log(query);
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    let data = await api.post("/adds/search").then(({ data }) => data);
+  };
 
   const navbar = Navbar();
 
@@ -86,6 +121,35 @@ export const Adds = ({ deleteAdd }) => {
         <>
           <section className="header img-banner relative pt-16 items-center flex h-screen max-h-860-px">
             <div className="container mx-auto items-center flex flex-wrap">
+              <div className="w-full  px-4">
+                {/* <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-orange-500 border-0">
+                  <div className="rounded-t mb-0 px-6 py-6">
+                    <div className="text-center mb-3">
+                      <h6 className="text-dark text-lg font-bold">
+                        Filter Your Jobs
+                      </h6>
+                    </div>
+                    <form onSubmit={onSubmit}>
+                      <div className="flex flex-wrap">
+                        <div className="w-full lg:w-6/12 px-4">
+                          <div className="relative w-full mb-3">
+                            <label className="block uppercase text-white text-xs font-bold mb-2">
+                              Job Category
+                            </label>
+                            <Select
+                              id="gender"
+                              className="no-svg border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              options={options}
+                              onChange={onChange}
+                            />
+                          </div>
+                          <button onClick={onSubmit} style={{marginTop: "0px"}} type="submit">Search</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div> */}
+              </div>
               {jobData.length !== 0 &&
                 jobData.map(({ data, _id }) => {
                   return (
@@ -178,7 +242,7 @@ export const Adds = ({ deleteAdd }) => {
                         </h6>
                       </div>
                       <div className="btn-wrapper text-center">
-                        ` ` {/* logo and icon */}
+                        {/* {url} */}
                       </div>
                       <div className="text-center">
                         Advertisement are coming soon ...

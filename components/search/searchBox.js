@@ -7,7 +7,7 @@ const SearchBox = () => {
         <button class="btn-search">
           <i class="fas fa-search"></i>
         </button>
-        <Input type="text" class="input-search" placeholder="Type to Search..."/>
+        <Input type="text" className="input-search" placeholder="Type to Search..."/>
       </div>
     </>
   );
