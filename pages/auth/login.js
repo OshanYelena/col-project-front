@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router.js";
 import { useForm } from "react-hook-form";
 
 import api from "../../api/contact";
+import { Authaccount } from "api/authRequire";
 
 // layout for page
 
@@ -58,6 +59,12 @@ export default function Login() {
     });
     console.log(addData);
   };
+  useEffect(() => {
+    const data = Authaccount();
+    if (data !== false ) {
+      router.push(`/${data}/dashboard`);
+    }
+  }, [])
 
   return (
     <>

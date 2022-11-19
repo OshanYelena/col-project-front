@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { Authaccount } from "api/authRequire";
 
 import Company from "layouts/Company.js";
@@ -26,6 +26,7 @@ const Applications = (color = "dark") => {
   const [addId, setAddId] = useState();
   const [complete, setComplete] = useState(false);
   const [compayId, setComId] = useState("");
+  const [finished, setFinished] = useState(false)
 
   const [accept, setAccept] = useState(false);
   const [btnColor, setColor] = useState("");
@@ -53,9 +54,9 @@ const Applications = (color = "dark") => {
     let data = await api
       .post("/student/application/status", { id, appliStatus })
       .then(({ data }) => data);
-
-    console.log(data);
+    setRemove(false);
   };
+
   useEffect(async () => {
     const dataType = Authaccount();
 
@@ -65,8 +66,7 @@ const Applications = (color = "dark") => {
     const data = await getData();
 
     applications(data._id);
- 
-  }, []);
+  }, [refresh]);
 
   return (
     <>
@@ -76,7 +76,7 @@ const Applications = (color = "dark") => {
             {application.map((data) => {
               return (
                 <div key={data._id} className="w-full px-4">
-                  {remove && addId === data._id && accept === false && (
+                  {remove && addId === data._id && finished === false && accept === false && (
                     <div className="text-white  alert-tag  px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
                       <span className="text-xl inline-block mr-5 align-middle">
                         <i className="fas fa-bell"></i>
@@ -87,10 +87,14 @@ const Applications = (color = "dark") => {
                       </span>
                       <button
                         type="button"
-                        onClick={statusManager(data._id, "reject")}
+                        onClick={() => {
+                          statusManager(data._id, "reject"),
+                            setRemove(false),
+                            setRefresh(true);
+                        }}
                         className=" remove-tag  bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
                       >
-                        <span>Reject</span>
+                        Reject
                       </button>
                       <button
                         onClick={() => {
@@ -115,7 +119,11 @@ const Applications = (color = "dark") => {
                         Accept this Application ?
                       </span>
                       <button
-                        onClick={statusManager(data._id, "accept")}
+                        onClick={() => {
+                          statusManager(data._id, "accept"),
+                            setRemove(false),
+                            setRefresh(true);
+                        }}
                         className=" remove-tag  bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
                       >
                         <span>Accept</span>
@@ -131,34 +139,41 @@ const Applications = (color = "dark") => {
                     </div>
                   )}
 
-                  {remove && addId === data._id && complete && (
-                    <div
-                      style={{ fontSize: "18px" }}
-                      className="text-white alert-tag  px-6 py-4 border-0 rounded relative mb-4 bg-emerald-500"
-                    >
-                      <span className=" inline-block mr-5 align-middle">
-                        <i className="fas fa-bell"></i>
-                      </span>
-                      <span className="inline-block align-middle mr-8">
-                        <b className="capitalize">Warning</b> Are You Sure to
-                        Set As Complete the Job?
-                      </span>
-                      <button
-                        onClick={statusManager(data._id, "complete")}
-                        className=" remove-tag  bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
+                  {remove && finished &&
+                    addId === data._id &&
+                    complete &&
+                     (
+                      <div
+                        style={{ fontSize: "18px" }}
+                        className="text-white alert-tag  px-6 py-4 border-0 rounded relative mb-4 bg-emerald-500"
                       >
-                        <span>Accept</span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setAccept(false), setRemove(false);
-                        }}
-                        className=" exit-tag  bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
-                      >
-                        <span>Close</span>
-                      </button>
-                    </div>
-                  )}
+                        <span className=" inline-block mr-5 align-middle">
+                          <i className="fas fa-bell"></i>
+                        </span>
+                        <span className="inline-block align-middle mr-8">
+                          <b className="capitalize">Warning</b> Are You Sure to
+                          Set As Complete the Job?
+                        </span>
+                        <button
+                          onClick={() => {
+                            statusManager(data._id, "complete"),
+                              setRemove(false),
+                              setRefresh(true);
+                          }}
+                          className=" remove-tag  bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
+                        >
+                          <span>Accept</span>
+                        </button>
+                        <button
+                          onClick={() => {
+                            setAccept(false), setRemove(false);
+                          }}
+                          className=" exit-tag  bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
+                        >
+                          <span>Close</span>
+                        </button>
+                      </div>
+                    )}
                   {remove === false && (
                     <>
                       <div
@@ -281,8 +296,7 @@ const Applications = (color = "dark") => {
                                           className="bg-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                                           type="button"
                                           onClick={() => {
-                                            setRemove(false),
-                                              setAddId(data._id);
+                                            setRemove(true), setAddId(data._id);
                                           }}
                                         >
                                           Reject Application
@@ -293,9 +307,8 @@ const Applications = (color = "dark") => {
                                           className="bg-emerald-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                                           type="button"
                                           onClick={() => {
-                                            setRemove(true),
-                                              setAddId(data._id),
-                                              setAccept(true);
+                                            setRemove(true), setAccept(true);
+                                            setAddId(data._id);
                                           }}
                                         >
                                           Accept Application
@@ -303,7 +316,7 @@ const Applications = (color = "dark") => {
                                       </>
                                     ) : (
                                       <>
-                                        {data.jobStatus !== "complete" && (
+                                        {data.jobStatus !== "complete" && data.jobStatus !== "reject" && (
                                           <>
                                             <button
                                               style={{
@@ -313,12 +326,29 @@ const Applications = (color = "dark") => {
                                               className="bg-purple-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                                               type="button"
                                               onClick={() => {
-                                                setRemove(false),
+                                                setRemove(true),
+                                                setFinished(true)
                                                   setAddId(data._id),
                                                   setComplete(true);
                                               }}
                                             >
                                               Finished the job
+                                            </button>
+                                          </>
+                                        )}
+                                            { data.jobStatus === "reject" && (
+                                          <>
+                                            <button
+                                              style={{
+                                                width: "100%",
+                                                backgroundColor: btnColor,
+                                              }}
+                                              className="bg-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                              type="button"
+                                              disabled={true}
+
+                                            >
+                                              Application Rejected
                                             </button>
                                           </>
                                         )}

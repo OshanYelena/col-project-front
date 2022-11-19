@@ -5,6 +5,8 @@ import Page from "layouts/Pages.js";
 
 import api from "../../../api/contact";
 
+import { Authaccount } from "api/authRequire";
+
 import { getData, existApplication } from "api/companydata";
 
 import fb from "config/firebase";
@@ -82,6 +84,10 @@ const JobCard = () => {
   };
 
   useEffect(async () => {
+    const data = Authaccount();
+    if (data !== "admin") {
+      router.push(`/${data}/dashboard`);
+    }
     getAddData();
     const userData = await getData();
     getUserData(userData);

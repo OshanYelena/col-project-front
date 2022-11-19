@@ -8,6 +8,7 @@ import CardSettings from "components/Cards/CardSettings.js";
 import CardProfile from "components/Cards/CardProfile.js";
 
 import { getStudentDataAdmin } from "api/companydata.js";
+import { Authaccount } from "api/authRequire";
 
 // layout for page
 
@@ -32,6 +33,11 @@ export default function Settings() {
   };
 
   useEffect(async () => {
+
+    const data = Authaccount();
+    if (data !== "admin") {
+      router.push(`/${data}/dashboard`);
+    }
     getReports();
     const dataLoad = await getStudentDataAdmin(id);
 

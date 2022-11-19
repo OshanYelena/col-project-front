@@ -8,6 +8,7 @@ import CardSettings from "components/Cards/CardSettings.js";
 import CardProfile from "components/Cards/CardProfile.js";
 
 import { getCompanyDataAdmin } from "api/companydata.js";
+import { Authaccount } from "api/authRequire";
 
 // layout for page
 
@@ -24,6 +25,11 @@ export default function Settings() {
   const [url, setUrl] = useState();
 
   useEffect(async () => {
+    const data = Authaccount();
+    if (data !== "admin") {
+      router.push(`/${data}/dashboard`);
+    }
+
     const dataLoad = await getCompanyDataAdmin(id);
 
     setUrl(dataLoad.urls);

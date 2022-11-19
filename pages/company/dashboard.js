@@ -26,7 +26,7 @@ export default function CompanyDashboard() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full mb-12 xl:mb-0 px-4">
-          <Adds deleteAdd={true} />
+          {/* <Adds deleteAdd={true} /> */}
         </div>
       </div>
     </>

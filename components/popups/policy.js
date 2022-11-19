@@ -6,7 +6,7 @@ import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
 import api from "../../api/contact.js";
 
-export default function Policy({studentData, gender, urls}) {
+export default function Policy({ studentData, gender, urls }) {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [create, setCreate] = useState(true);
   const [redirect, setRedirect] = useState(false);
@@ -19,13 +19,13 @@ export default function Policy({studentData, gender, urls}) {
       studentData: studentData,
       gender: gender,
       urls: urls,
-      password: studentData.password
+      password: studentData.password,
     };
     let data = await api
       .post("/student/new", dataBody)
       .then(({ data }) => data);
 
-      console.log("data",data)
+    console.log("data", data);
     if (data.message === "Student Created!") {
       router.push("/student/confirm/0293087426234242");
     } else {
@@ -60,50 +60,41 @@ export default function Policy({studentData, gender, urls}) {
           {" "}
           <ul className="policy-text">
             <li>
-              <i className="fas fa-circle">
-                You must be an undergraduate at a state university in Sri Lanka,
-                and you must verify it by uploading a photo of your university
-                identity card.
-              </i>
+              <i className="fas fa-solid fa-star  text-red-500"></i>You must be
+              an undergraduate at a state university in Sri Lanka, and you must
+              verify it by uploading a photo of your university identity card.
             </li>
             <li>
-              <i className="fas fa-circle">
-                Your account will be accepted within 48 hours after a screening
-                process by the admin panel.{" "}
-              </i>
+              <i className="fas fa-solid fa-star  text-red-500"></i> Your
+              account will be accepted within 48 hours after a screening process
+              by the admin panel.{" "}
             </li>
 
             <li>
               {" "}
-              <i className="icon fas fa-circle">
-                {" "}
-                You will receive an email once the account is accepted.{" "}
-              </i>
+              <i className="fas fa-solid fa-star  text-red-500"></i>
+              You will receive an email once the account is accepted.{" "}
             </li>
             <li>
-              <i className="fas fa-circle">
-                It is your responsibility to provide genuine and accurate
-                information.{" "}
-              </i>
+              <i className="fas fa-solid fa-star  text-red-500"></i>
+              It is your responsibility to provide genuine and accurate
+              information.{" "}
             </li>
             <li>
-              <i className="fas fa-circle">
-                If the admin panel finds that your information is not true, your
-                account will be restricted.{" "}
-              </i>
+              <i className="fas fa-solid fa-star  text-red-500"></i>
+              If the admin panel finds that your information is not true, your
+              account will be restricted.{" "}
             </li>
 
             <li>
-              <i className="fas fa-circle">
-                You won’t be charged any amount for using our services.{" "}
-              </i>
+              <i className="fas fa-solid fa-star  text-red-500"></i>
+              You won’t be charged any amount for using our services.{" "}
             </li>
             <li>
-              <i className="fas fa-circle">
-                Once you accept the part-time job, you have to do that work. You
-                cannot skip it. Otherwise, the admin panel will be restricted
-                your account.{" "}
-              </i>
+              <i className="fas fa-solid fa-star  text-red-500"></i>
+              Once you accept the part-time job, you have to do that work. You
+              cannot skip it. Otherwise, the admin panel will be restricted your
+              account.{" "}
             </li>
           </ul>
           <div className="mt-10">
@@ -136,14 +127,16 @@ export default function Policy({studentData, gender, urls}) {
           >
             Close
           </button>
-          <button
-            onClick={onSubmit}
-            disabled={create}
-            className="bg-orange-500 text-black active:bg-blueGray-600 font-bold uppercase text-sm px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            type="submit"
-          >
-            Create Account
-          </button>
+          {!create && (
+            <button
+              onClick={onSubmit}
+              disabled={create}
+              className="bg-orange-500 text-black active:bg-blueGray-600 font-bold uppercase text-sm px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="submit"
+            >
+              Create Account
+            </button>
+          )}
         </ModalFooter>
       </Modal>
     </>

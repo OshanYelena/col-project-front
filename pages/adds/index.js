@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 
 import Select from "react-select";
 
+import { Authaccount } from "api/authRequire";
+
 import Auth from "layouts/Auth.js";
 import api from "../../api/contact";
 import { getData } from "api/companydata";
@@ -20,7 +22,8 @@ const Navbar = () => {
   if (typeof window !== "undefined") {
     // Perform localStorage action
     const item = localStorage.getItem("type");
-    return item;
+
+    if (item) return item;
   } else {
     return false;
   }
@@ -49,43 +52,44 @@ export const Adds = ({ deleteAdd }) => {
   const [rot, cutrou] = useState("");
   const [load, setLoad] = useState(false);
   const [url, setUrl] = useState();
-  const [query, setQuery] = useState("");
-  const [jobDel, setDelete] = useState(false)
+  const [search, setQuery] = useState("");
+  const [jobDel, setDelete] = useState(false);
+  const [page, setPage] = useState(1);
 
   const router = useRouter();
 
   const addDelete = async (_id) => {
     let data = await api.delete(`/company/add/${_id}`).then(({ data }) => data);
-    if(data.message === "forum Deleted"){
+    if (data.message === "forum Deleted") {
       setDelete(true);
       alert("job Has removed");
-      setDelete(false)
-      
+      setDelete(false);
     }
   };
 
   const getcomAdds = async (comName) => {
     console.log(comName);
-    let data = await api
-      .get("/company/job/adds", {
-        headers: {
-          companyName: comName,
-        },
-      })
-      .then(({ data }) => data);
+    let data = await api.post(`/adds/search?comName=${comName}&page=${page}&search=${search}`).then(({ data }) => data);
+    
     setLoad(true);
-    setJobData(data.jobPosts);
+    setJobData(data.jobs);
   };
 
   const getAdds = async () => {
-    let data = await api
-      .get("/company/job/all-adds", {})
-      .then(({ data }) => data);
+    let data = await api.post(`/adds/search?comName=All&page=${page}&search=${search}`).then(({ data }) => data);
+    // let data = await api
+    //   .get("/company/job/all-adds", {})
+    //   .then(({ data }) => data);
     setLoad(true);
-    setJobData(data.jobPosts);
+    setJobData(data.jobs);
   };
 
   useEffect(async () => {
+    const typeVerify = Authaccount();
+    if (typeVerify === false) {
+      router.push(`/${typeVerify}/dashboard`);
+    }
+
     cutrou(router.pathname);
 
     const data = await getData();
@@ -97,17 +101,17 @@ export const Adds = ({ deleteAdd }) => {
     } else {
       getAdds();
     }
-  }, [jobDel]);
+  }, [jobDel, search]);
 
   const onChange = async (e) => {
     setQuery(e.value);
-    console.log(query);
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    let data = await api.post("/adds/search").then(({ data }) => data);
-  };
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   let data = await api.post(`/adds/search?page=${page}&search=${search}`).then(({ data }) => data);
+  //   console.log(data)
+  // };
 
   const navbar = Navbar();
 
@@ -116,20 +120,25 @@ export const Adds = ({ deleteAdd }) => {
       {/* {rot === "/student/dashboard" && navbar === "student" && <StudentNavbar fixed />}
 
       {rot === "/company/dashboard"  && navbar === "company" && <CompanyNavbar />} */}
+      {navbar === "student" && <StudentNavbar fixed />}
+
+      {navbar === "company" && <CompanyNavbar />}
+      {navbar === "admin" && <Admin />}
       {!navbar && <IndexNavbar fixed />}
+
       {load === true ? (
         <>
-          <section className="header img-banner relative pt-16 items-center flex h-screen max-h-860-px">
+          <section className="header img-banner relative pt-16 items-center  h-screen max-h-860-px">
             <div className="container mx-auto items-center flex flex-wrap">
               <div className="w-full  px-4">
-                {/* <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-orange-500 border-0">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-orange-500 border-0">
                   <div className="rounded-t mb-0 px-6 py-6">
                     <div className="text-center mb-3">
                       <h6 className="text-dark text-lg font-bold">
                         Filter Your Jobs
                       </h6>
                     </div>
-                    <form onSubmit={onSubmit}>
+                    <form >
                       <div className="flex flex-wrap">
                         <div className="w-full lg:w-6/12 px-4">
                           <div className="relative w-full mb-3">
@@ -137,18 +146,18 @@ export const Adds = ({ deleteAdd }) => {
                               Job Category
                             </label>
                             <Select
-                              id="gender"
+                              id="jobCategory"
                               className="no-svg border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                               options={options}
                               onChange={onChange}
                             />
                           </div>
-                          <button onClick={onSubmit} style={{marginTop: "0px"}} type="submit">Search</button>
+                          <button style={{marginTop: "0px"}} type="submit">Search</button>
                         </div>
                       </div>
                     </form>
                   </div>
-                </div> */}
+                </div>
               </div>
               {jobData.length !== 0 &&
                 jobData.map(({ data, _id }) => {
@@ -248,7 +257,7 @@ export const Adds = ({ deleteAdd }) => {
                         Advertisement are coming soon ...
                       </div>
                       <hr className="mt-6 border-b-1 border-blueGray-300" />
-                      <Link href={"/"}>
+                      <Link href={`/${navbar}/dashboard`}>
                         <button type="submit">Back to DashBoard</button>
                       </Link>
                     </div>

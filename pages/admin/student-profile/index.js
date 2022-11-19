@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import api from "../../../api/contact";
 
 // components
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { Authaccount } from "api/authRequire";
 
 import Admin from "layouts/Admin.js";
@@ -26,12 +26,12 @@ export default function studentManager() {
   };
 
   useEffect(async () => {
-    getStudents();
     const data = Authaccount();
 
     if (data !== "admin") {
       router.push(`/${data}/dashboard`);
     }
+    getStudents();
     // const data = await getCompanyDataAdmin();
     // console.log(data);
   }, []);
@@ -109,7 +109,12 @@ export default function studentManager() {
                       );
                     })}
                   </tbody>
-                ): (<> <LoadingPage/></>)}
+                ) : (
+                  <>
+                    {" "}
+                    <LoadingPage />
+                  </>
+                )}
               </table>
             </div>
           </div>
@@ -151,7 +156,7 @@ export default function studentManager() {
                   </tr>
                 </thead>
                 {accpeted ? (
-                  <tbody >
+                  <tbody>
                     {accpeted.map((data) => {
                       {
                         console.log(data);
@@ -181,7 +186,12 @@ export default function studentManager() {
                       );
                     })}
                   </tbody>
-                ): (<> <LoadingPage/></>) }
+                ) : (
+                  <>
+                    {" "}
+                    <LoadingPage />
+                  </>
+                )}
               </table>
             </div>
           </div>
@@ -252,7 +262,11 @@ export default function studentManager() {
                       );
                     })}
                   </tbody>
-                ): (<><LoadingPage/></>)}
+                ) : (
+                  <>
+                    <LoadingPage />
+                  </>
+                )}
               </table>
             </div>
           </div>

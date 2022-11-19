@@ -6,6 +6,8 @@ import Link from "next/link";
 
 import Page from "layouts/Pages.js";
 
+import { Authaccount } from "api/authRequire";
+
 const ReportSubmit = () => {
   const router = useRouter();
 

@@ -12,7 +12,7 @@ import api from "../../api/contact";
 import { getData } from "api/companydata";
 
 // components
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { Authaccount } from "api/authRequire";
 
 import LoadingPage from "components/PageChange/LoadingPage";
@@ -34,14 +34,15 @@ const ApplicationsStudent = (color = "dark") => {
       .then(({ data }) => data, setLoad(true));
 
     setApplication(data);
-
-    setStudentId(data[0].studentId);
-    setCompanyId(data[0].companyId);
-    console.log("application", data[0]);
+    if (data.length !== 0) {
+      setStudentId(data[0].studentId);
+      setCompanyId(data[0].companyId);
+    } else {
+      setApplication();
+    }
   };
 
   useEffect(async () => {
-
     const daatType = Authaccount();
 
     if (daatType !== "student") {
@@ -253,31 +254,23 @@ const ApplicationsStudent = (color = "dark") => {
 
           {!application && (
             <>
-              <div
-                className={
-                  "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
-                  (color === "dark" ? "bg-white" : "bg-blueGray-700 text-white")
-                }
-              >
-                <div className="rounded-t mb-0 px-4 py-3 border-0">
-                  <div className="flex flex-wrap items-center">
-                    <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-                      <h3
-                        className={
-                          "font-semibold text-lg " +
-                          (color === "light"
-                            ? "text-blueGray-700"
-                            : "text-white")
-                        }
-                      >
-                        Applications
-                      </h3>
+              <div className="w-full  px-4">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-orange-500 border-0">
+                  <div className="rounded-t mb-0 px-6 py-6">
+                    <div className="text-center mb-3">
+                      <h6 className="text-dark text-lg font-bold">
+                     You Have not yet applied for any advertisements!
+                      </h6>
                     </div>
+                    <div className="btn-wrapper text-center">{/* {url} */}</div>
+                    <div className="text-center">
+                      Apply Now !
+                    </div>
+                    <hr className="mt-6 border-b-1 border-blueGray-300" />
+                    <Link href={`/adds`}>
+                      <button type="submit">View Job Adds</button>
+                    </Link>
                   </div>
-                </div>
-                <div className="block w-full overflow-x-auto">
-                  {/* Projects table */}
-                  <div>Not Yet Submitted Any Applications</div>
                 </div>
               </div>
             </>

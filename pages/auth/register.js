@@ -1,11 +1,22 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 // layout for page
+import { Authaccount } from "api/authRequire";
 
 import Auth from "layouts/Auth.js";
 
 export default function Register() {
+  const router = useRouter();
+
+  React.useEffect(() => {
+    // checks if the user is authenticated
+    const data = Authaccount();
+    if (data !== false) {
+      router.push(`/${data}/dashboard`);
+    }
+  }, []);
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -24,7 +35,7 @@ export default function Register() {
                       className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                       type="button"
                     >
-                    <i class="fas fa-solid fa-graduation-cap"></i>
+                      <i class="fas fa-solid fa-graduation-cap"></i>
                       Student
                     </button>
                   </Link>
@@ -33,7 +44,7 @@ export default function Register() {
                       className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                       type="button"
                     >
-<i class="fas fa-thin fa-building"></i>
+                      <i class="fas fa-thin fa-building"></i>
                       Company
                     </button>
                   </Link>

@@ -42,6 +42,11 @@ const JobCard = () => {
   };
 
   useEffect(async () => {
+    const data = Authaccount();
+    if (data === false) {
+      router.push(`/${data}/dashboard`);
+    }
+
     setUserType(Authaccount)
     getAddData();
 
