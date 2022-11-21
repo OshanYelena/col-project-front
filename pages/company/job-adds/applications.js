@@ -4,7 +4,7 @@ import { Authaccount } from "api/authRequire";
 
 import Company from "layouts/Company.js";
 import Link from "next/link";
-// import Adds from "pages/adds";
+// import ads from "pages/ads";
 // import CardAdd from "components/Cards/CardAdd.js";
 import CardTable from "components/Cards/CardTable.js";
 
@@ -281,7 +281,7 @@ const Applications = (color = "dark") => {
                                   <a
                                     className="job-tag"
                                     target={"_blank"}
-                                    href={"/adds/" + data.jobId}
+                                    href={"/ads/" + data.jobId}
                                   >
                                     View Job Post
                                   </a>

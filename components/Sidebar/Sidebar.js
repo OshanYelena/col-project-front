@@ -181,13 +181,13 @@ export default function Sidebar() {
               </li>
 
               <li className="inline-flex">
-              <Link href="/admin/adds">
+              <Link href="/admin/ads">
                   <p
      
                     className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                   >
                     <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
-                    Adds Manager
+                    ads Manager
                   </p>
                 </Link>
               </li>

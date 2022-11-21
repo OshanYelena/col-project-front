@@ -15,7 +15,7 @@ export default function Navbar() {
   };
 
   const onSubmit = async() => {
-    let data = await api.post('/adds/search').then(({ data }) => data);
+    let data = await api.post('/ads/search').then(({ data }) => data);
     
 
   }

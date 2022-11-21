@@ -45,7 +45,7 @@ const options = [
   { value: "Data", label: "Data" },
 ];
 
-export const Adds = ({ deleteAdd }) => {
+export const ads = ({ deleteAdd }) => {
   const [jobData, setJobData] = useState([]);
   const [remove, setRemove] = useState(false);
   const [addId, setAddId] = useState();
@@ -67,18 +67,18 @@ export const Adds = ({ deleteAdd }) => {
     }
   };
 
-  const getcomAdds = async (comName) => {
+  const getcomads = async (comName) => {
     console.log(comName);
-    let data = await api.post(`/adds/search?comName=${comName}&page=${page}&search=${search}`).then(({ data }) => data);
+    let data = await api.post(`/ads/search?comName=${comName}&page=${page}&search=${search}`).then(({ data }) => data);
     
     setLoad(true);
     setJobData(data.jobs);
   };
 
-  const getAdds = async () => {
-    let data = await api.post(`/adds/search?comName=All&page=${page}&search=${search}`).then(({ data }) => data);
+  const getads = async () => {
+    let data = await api.post(`/ads/search?comName=All&page=${page}&search=${search}`).then(({ data }) => data);
     // let data = await api
-    //   .get("/company/job/all-adds", {})
+    //   .get("/company/job/all-ads", {})
     //   .then(({ data }) => data);
     setLoad(true);
     setJobData(data.jobs);
@@ -97,9 +97,9 @@ export const Adds = ({ deleteAdd }) => {
     if (data.company) {
       setUrl(data.urls);
       console.log(data.urls);
-      getcomAdds(data.company.name);
+      getcomads(data.company.name);
     } else {
-      getAdds();
+      getads();
     }
   }, [jobDel, search]);
 
@@ -109,7 +109,7 @@ export const Adds = ({ deleteAdd }) => {
 
   // const onSubmit = async (e) => {
   //   e.preventDefault();
-  //   let data = await api.post(`/adds/search?page=${page}&search=${search}`).then(({ data }) => data);
+  //   let data = await api.post(`/ads/search?page=${page}&search=${search}`).then(({ data }) => data);
   //   console.log(data)
   // };
 
@@ -207,7 +207,7 @@ export const Adds = ({ deleteAdd }) => {
                           </button>
                         </>
                       )}
-                      <Link href={`/adds/${_id}`}>
+                      <Link href={`/ads/${_id}`}>
                         <button
                           style={{ width: "20%" }}
                           className="view-tag bg-emerald-500 text-white active:bg-amber-600 font-bold uppercase text-sm px-6 py-3 rounded  hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -277,6 +277,6 @@ export const Adds = ({ deleteAdd }) => {
   );
 };
 
-export default Adds;
+export default ads;
 
-// Adds.layout = Auth;
+// ads.layout = Auth;

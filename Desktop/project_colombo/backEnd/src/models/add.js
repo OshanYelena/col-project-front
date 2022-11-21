@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const addSchema = new mongoose.Schema({
+const adschema = new mongoose.Schema({
   jobId: {
     type: String,
   },
@@ -31,6 +31,6 @@ const addSchema = new mongoose.Schema({
   },
 });
 
-const schema = mongoose.model("add", addSchema);
+const schema = mongoose.model("add", adschema);
 
 export { schema };

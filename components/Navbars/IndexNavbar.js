@@ -53,7 +53,7 @@ export default function Navbar(props = "black")  {
               {/* <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-white px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/adds"
+                  href="/ads"
                   target="_blank"
                 >
                   <i className="text-blueGray-400 fab fa-twitter text-lg leading-lg " />

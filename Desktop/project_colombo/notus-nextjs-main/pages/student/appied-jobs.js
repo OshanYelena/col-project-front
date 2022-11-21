@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import Student from "layouts/Student.js";
 import Link from "next/link";
-// import Adds from "pages/adds";
+// import ads from "pages/ads";
 // import CardAdd from "components/Cards/CardAdd.js";
 import CardTable from "components/Cards/CardTable.js";
 
@@ -163,7 +163,7 @@ const ApplicationsStudent = (color = "dark") => {
                             {data.studentDetails.faculty}
                           </td>
                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                            <a className="job-tag" target={"_blank"} href={"/adds/" + data.jobId}>
+                            <a className="job-tag" target={"_blank"} href={"/ads/" + data.jobId}>
                               View Job Post
                             </a>
                           </td>

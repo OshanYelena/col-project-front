@@ -4,7 +4,7 @@ import React, {useState} from "react";
 
 // layout for page
 
-import Adds from "pages/adds";
+import ads from "pages/adds";
 
 import Company from "layouts/Company.js";
 
@@ -17,7 +17,7 @@ export default function CompanyDashboard() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full mb-12 xl:mb-0 px-4">
-    <Adds deleteAdd={true} />
+    <ads deleteAdd={true} />
         </div>
 
       </div>

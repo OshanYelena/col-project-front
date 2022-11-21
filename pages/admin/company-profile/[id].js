@@ -192,7 +192,7 @@ export default function Settings() {
                             22
                           </span>
                           <span className="text-sm text-blueGray-400">
-                            Adds
+                            ads
                           </span>
                         </div>
                         <div className="mr-4 p-3 text-center">

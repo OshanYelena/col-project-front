@@ -151,10 +151,10 @@ export default function Company() {
                 </Link>
               </li> */}
               <li className="items-center">
-                <Link href="/adds">
+                <Link href="/ads">
                   <p className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                    View Job Adds
+                    View Job ads
                   </p>
                 </Link>
               </li>

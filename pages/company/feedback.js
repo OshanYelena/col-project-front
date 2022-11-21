@@ -42,7 +42,7 @@ export const Reports = ({ deleteAdd }) => {
     console.log(rot);
     const data = await getData();
     if (data.company) {
-      //   getcomAdds(data._id);
+      //   getcomads(data._id);
       getReports(data._id);
     } else {
     }
@@ -59,7 +59,7 @@ export const Reports = ({ deleteAdd }) => {
                 report.map((data) => {
                   return (
                     <div key={data._id} class="feature feature-one">
-                      <Link href={"/adds/" + data.jobId}>
+                      <Link href={"/ads/" + data.jobId}>
                         view Job Vacancy add
                       </Link>
                       <h2 class="feature__title">Job FeedBack</h2>

@@ -155,13 +155,13 @@ export default function Company() {
                 </Link>
               </li>
               <li className="items-center">
-                <Link href="/adds">
+                <Link href="/ads">
                   <p className="text-white hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint  text-orange-500 mr-2 text-sm"></i>{" "}
                     View My Job
                   </p>
                 </Link>
-                <Link href="/company/job-adds/applications">
+                <Link href="/company/job-ads/applications">
                   <p className="text-white hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint  text-orange-500 mr-2 text-sm"></i>{" "}
                     Job Applications

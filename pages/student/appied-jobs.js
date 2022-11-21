@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import Student from "layouts/Student.js";
 import Link from "next/link";
-// import Adds from "pages/adds";
+// import ads from "pages/ads";
 // import CardAdd from "components/Cards/CardAdd.js";
 import CardTable from "components/Cards/CardTable.js";
 
@@ -170,7 +170,7 @@ const ApplicationsStudent = (color = "dark") => {
                                 <a
                                   className="text-lg text-orange-500"
                                   target={"_blank"}
-                                  href={"/adds/" + data.jobId}
+                                  href={"/ads/" + data.jobId}
                                 >
                                   View Job Post
                                 </a>
@@ -267,8 +267,8 @@ const ApplicationsStudent = (color = "dark") => {
                       Apply Now !
                     </div>
                     <hr className="mt-6 border-b-1 border-blueGray-300" />
-                    <Link href={`/adds`}>
-                      <button type="submit">View Job Adds</button>
+                    <Link href={`/ads`}>
+                      <button type="submit">View Job ads</button>
                     </Link>
                   </div>
                 </div>

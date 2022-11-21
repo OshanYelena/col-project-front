@@ -24,7 +24,7 @@ export default function HeaderStats() {
                 {type === "company" && (
                   <CardStats
                     statSubtitle="Company Dashboard"
-                    statTitle="Manage your Adds and Applications"
+                    statTitle="Manage your ads and Applications"
                   />
                 )}
                 {type === "student" && (

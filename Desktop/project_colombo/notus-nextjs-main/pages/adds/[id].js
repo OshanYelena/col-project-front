@@ -217,7 +217,7 @@ const JobCard = () => {
                   <div className="">
                     <div className="relative mt-10 flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
                       <article class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                        <div class="job-title-adds">Software Engineer</div>
+                        <div class="job-title-ads">Software Engineer</div>
                         {console.log(applied)}
                         {applied ? (
                           <button onClick={apply} className="apply-button">

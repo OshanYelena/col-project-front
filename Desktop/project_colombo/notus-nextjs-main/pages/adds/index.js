@@ -22,7 +22,7 @@ const Navbar = () => {
   }
 };
 
-export const Adds = ({ deleteAdd }) => {
+export const ads = ({ deleteAdd }) => {
   const [jobData, setJobData] = useState([]);
   const [remove, setRemove] = useState(false);
   const [addId, setAddId] = useState();
@@ -35,10 +35,10 @@ export const Adds = ({ deleteAdd }) => {
     console.log(data);
   };
 
-  const getcomAdds = async (comName) => {
+  const getcomads = async (comName) => {
     console.log(comName);
     let data = await api
-      .get("/company/job/adds", {
+      .get("/company/job/ads", {
         headers: {
           companyName: comName,
         },
@@ -49,9 +49,9 @@ export const Adds = ({ deleteAdd }) => {
     setJobData(data.jobPosts);
   };
 
-  const getAdds = async () => {
+  const getads = async () => {
     let data = await api
-      .get("/company/job/all-adds", {})
+      .get("/company/job/all-ads", {})
       .then(({ data }) => data);
     console.log("uasgd", data.jobPosts);
     setJobData(data.jobPosts);
@@ -62,9 +62,9 @@ export const Adds = ({ deleteAdd }) => {
     console.log(rot)
     const data = await getData();
     if (data.company) {
-      getcomAdds(data.company.name);
+      getcomads(data.company.name);
     } else {
-      getAdds();
+      getads();
     }
   }, []);
 
@@ -129,7 +129,7 @@ export const Adds = ({ deleteAdd }) => {
                       </button>
                     </>
                   )}
-                  <Link href={`/adds/${_id}`}>
+                  <Link href={`/ads/${_id}`}>
                     <button
                       style={{ width: "20%" }}
                       class="view-tag bg-emerald-500 text-white active:bg-amber-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -186,6 +186,6 @@ export const Adds = ({ deleteAdd }) => {
   );
 };
 
-export default Adds;
+export default ads;
 
-// Adds.layout = Auth;
+// ads.layout = Auth;

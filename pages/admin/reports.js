@@ -114,7 +114,7 @@ export default function Report() {
                               </Link>
                             </td>
                             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                              <Link href={"/admin/adds/" + data.jobId}>
+                              <Link href={"/admin/ads/" + data.jobId}>
                                 <button
                                   style={{ width: "100%" }}
                                   className="text-blueGray-400 text-lg border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
