@@ -75,8 +75,10 @@ export default function CardAdd() {
     payRate: "",
     phoneNo: "",
     time: "",
+    city: "",
     flyerUrl: "",
     date: "",
+    address: "",
   });
 
   const [addData, setAddData] = useState(addFormData);

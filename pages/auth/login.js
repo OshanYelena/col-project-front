@@ -13,6 +13,11 @@ import LoadingPage from "components/PageChange/LoadingPage";
 
 export default function Login() {
   const router = useRouter();
+
+  const [blacklist, setErrorMessage] = useState({
+    errorType: "",
+    errorStatus: false,
+  });
   const {
     register,
     handleSubmit,
@@ -33,21 +38,33 @@ export default function Login() {
     let data = await api
       .post("/auth/user/login", addData)
       .then(({ data }) => data);
-
-    localStorage.setItem("auth-token", data.data);
-    localStorage.setItem("type", data.type);
-    const token = localStorage.getItem("auth-token");
-    
-    if (token) {
+    console.log("data", data.message);
+    if (data.message === "Your Account Has been Blacklisted") {
+      setErrorMessage({
+        errorType: "blackList",
+        errorStatus: true,
+      });
       setLoad(false);
-      router.push("/");
-    }
-
-    if (data.message === "User Not Found!") {
-      setUserError(true);
-    }
-    if (data.message === "Invalid Email or Password") {
-      setUserError(true);
+    } else if (data.message === "User Not Found!") {
+      setErrorMessage({
+        errorType: "Invalid",
+        errorStatus: true,
+      });
+      setLoad(false);
+    } else if (data.message === "Invalid Email or Password") {
+      setErrorMessage({
+        errorType: "Invalid",
+        errorStatus: true,
+      });
+      setLoad(false);
+    } else {
+      localStorage.setItem("auth-token", data.data);
+      localStorage.setItem("type", data.type);
+      const token = localStorage.getItem("auth-token");
+      if (token) {
+        setLoad(false);
+        router.push("/");
+      }
     }
   };
 
@@ -61,10 +78,10 @@ export default function Login() {
   };
   useEffect(() => {
     const data = Authaccount();
-    if (data !== false ) {
+    if (data !== false) {
       router.push(`/${data}/dashboard`);
     }
-  }, [])
+  }, []);
 
   return (
     <>
@@ -77,7 +94,7 @@ export default function Login() {
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
                   <div className="rounded-t mb-0 px-6 py-6">
                     <div className="text-center mb-3">
-                      <h6 className="text-orange-500 text-lg font-bold">
+                      <h6 className="text-orange-500 text-xl font-bold">
                         Welcome to parttimer.lk
                       </h6>
                     </div>
@@ -85,78 +102,94 @@ export default function Login() {
                   </div>
                   <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                     <div className="text-black text-center mb-3 font-bold">
-                      <small>sign in with credentials</small>
+                      <img src="/img/Asset 2@300x-8.png" alt="" />
+                      {/* <small>sign in with credentials</small> */}
                     </div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="relative w-full mb-3">
-                        <label
-                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Email
-                        </label>
-                        <input
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          id="email"
-                          placeholder="Email"
-                          type={"email"}
-                          {...register("email", {
-                            required: true,
-                            onChange: onChange,
-                          })}
-                        />
-                        {errors.email && (
-                          <p className="error">This field is required</p>
-                        )}
-                      </div>
+                    {blacklist.errorType === "blackList" ? (
+                      <>
+                        <div className="relative w-full mb-3">
+                          <h2 className="error">
+                            Your Account Has been Blacklisted! Please Contact
+                            our admin via email
+                          </h2>
+                        </div>{" "}
+                      </>
+                    ) : (
+                      <>
+                        {" "}
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                          <div className="relative w-full mb-3">
+                            <label
+                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password"
+                            >
+                              Email
+                            </label>
+                            <input
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              id="email"
+                              placeholder="Email"
+                              type={"email"}
+                              {...register("email", {
+                                required: true,
+                                onChange: onChange,
+                              })}
+                            />
+                            {errors.email && (
+                              <p className="error">This field is required</p>
+                            )}
+                          </div>
 
-                      <div className="relative w-full mb-3">
-                        <label
-                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Password
-                        </label>
-                        <input
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          id="password"
-                          placeholder="Password"
-                          type={"password"}
-                          {...register("password", {
-                            required: true,
-                            onChange: onChange,
-                          })}
-                        />
-                        {errors.password && (
-                          <p className="error">This field is required</p>
-                        )}
-                      </div>
-                      <div>
-                        <label className="inline-flex items-center cursor-pointer">
-                          <input
-                            id="customCheckLogin"
-                            type="checkbox"
-                            className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                          />
-                          <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                            Remember me
-                          </span>
-                        </label>
-                      </div>
+                          <div className="relative w-full mb-3">
+                            <label
+                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password"
+                            >
+                              Password
+                            </label>
+                            <input
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              id="password"
+                              placeholder="Password"
+                              type={"password"}
+                              {...register("password", {
+                                required: true,
+                                onChange: onChange,
+                              })}
+                            />
+                            {errors.password && (
+                              <p className="error">This field is required</p>
+                            )}
+                          </div>
+                          <div>
+                            <label className="inline-flex items-center cursor-pointer">
+                              <input
+                                id="customCheckLogin"
+                                type="checkbox"
+                                className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                              />
+                              <span className="ml-2 text-sm font-semibold text-blueGray-600">
+                                Remember me
+                              </span>
+                            </label>
+                          </div>
 
-                      <div className="text-center mt-6">
-                        <button
-                          className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                          type="submit"
-                          disabled={userError}
-                        >
-                          Sign In
-                        </button>
-                      </div>
-                      {userError && (
-                        <p className="error">Incorrect Email or Password</p>
-                      )}
-                    </form>
+                          <div className="text-center mt-6">
+                            <button
+                              className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                              type="submit"
+                              disabled={userError}
+                            >
+                              
+                              Sign In
+                            </button>
+                          </div>
+                          {blacklist.errorType === 'Invalid' && (
+                            <p className="error text-lg">Incorrect Email or Password</p>
+                          )}
+                        </form>
+                      </>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-wrap mt-6 relative">

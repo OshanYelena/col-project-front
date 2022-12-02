@@ -247,7 +247,7 @@ const ApplicationsStudent = (color = "dark") => {
                               </td> */}
                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                   <a
-                                    className="text-lg text-orange-500"
+                                    className="text-lg font-bold text-white"
                                     target={"_blank"}
                                     href={"/adds/" + data.jobId}
                                   >
@@ -267,7 +267,7 @@ const ApplicationsStudent = (color = "dark") => {
                                               // // color: "black",
                                             }
                                           }
-                                          className="text-lg text-orange-500 "
+                                          className="text-lg  font-bold uppercase text-red-500 "
                                         >
                                           pending
                                         </span>
@@ -275,14 +275,14 @@ const ApplicationsStudent = (color = "dark") => {
                                     )}
                                     {data.jobStatus === "accept" && (
                                       <>
-                                        <span className="text-lg text-emerald-500 ">
+                                        <span className="text-lg  font-bold uppercase  text-emerald-500 ">
                                           Accepted
                                         </span>
                                       </>
                                     )}
                                     {data.jobStatus === "reject" && (
                                       <>
-                                        <span className="text-lg text-red ">
+                                        <span className="text-lg  font-bold uppercase  text-red-500  ">
                                           Rejected
                                         </span>
                                       </>
@@ -291,7 +291,7 @@ const ApplicationsStudent = (color = "dark") => {
                                     {data.jobStatus === "complete" && (
                                       <>
                                         <div>
-                                          <span className="text-orange-500 text-lg">
+                                          <span className="text-emerald-500  font-bold uppercase text-lg">
                                             Congratulations! You have completed
                                             this job
                                           </span>
@@ -302,10 +302,10 @@ const ApplicationsStudent = (color = "dark") => {
                                             href={`/student/${studentId}/${companyId}/${data.jobId}/${data._id}/review`}
                                           >
                                             <button
-                                              className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
+                                              className="text-white-500   font-bold uppercase border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4"
                                               type="button"
                                             >
-                                              Review your job now!
+                                              Review your job now! Click Here!
                                             </button>
                                           </Link>
                                         </div>

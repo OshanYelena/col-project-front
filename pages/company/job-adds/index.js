@@ -78,7 +78,7 @@ const Ads = (color = "dark") => {
 
     setLoad(true);
     setJobData(data.jobs);
-    // console.log("hello", data.jobs);
+    console.log("hello", data.jobs);
 
     // setComName(data)
   };
@@ -87,9 +87,7 @@ const Ads = (color = "dark") => {
     let data = await api
       .post(`/adds/search?comName=All&page=${page}&search=${search}`)
       .then(({ data }) => data);
-    // let data = await api
-    //   .get("/company/job/all-ads", {})
-    //   .then(({ data }) => data);
+
     setLoad(true);
     setJobData(data.jobs);
   };
@@ -239,12 +237,11 @@ const Ads = (color = "dark") => {
                     </th>
                   </tr>
                 </thead>
-                {jobData.length !== 0 &&
+                {jobData.length !== 0 ? (
                   jobData.map(({ data, _id }) => {
                     return (
                       <tbody key={data._id}>
                         <tr>
-                        
                           <td className="border-t-0  px-6 font-semibold align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-4">
                             {data.jobCategory}
                           </td>
@@ -274,7 +271,33 @@ const Ads = (color = "dark") => {
                         </tr>
                       </tbody>
                     );
-                  })}
+                  })
+                ) : (
+                  <>
+                    <div className="w-full  px-4">
+                      <div className="relative align-item-center text-center flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-orange-500 border-0">
+                        <div className="rounded-t mb-0 px-6 py-6">
+                          <div className="text-center mb-3">
+                            <h6 className="text-dark text-lg font-bold">
+                              This company has not yet published any
+                              advertisements on this job category
+                            </h6>
+                          </div>
+                          <div className="btn-wrapper text-center">
+                            {/* {url} */}
+                          </div>
+                          <div className="text-center text-md">
+                            Advertisement are coming soon ...
+                          </div>
+                          <hr className="mt-6 border-b-1 border-blueGray-300" />
+                          {/* <Link href={`/${navbar}/dashboard`}>
+                            <button type="submit">Back to DashBoard</button>
+                          </Link> */}
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
               </table>
             </div>
           </div>
@@ -288,7 +311,6 @@ const Ads = (color = "dark") => {
     </>
   );
 };
-
 
 export default Ads;
 

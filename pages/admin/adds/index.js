@@ -85,11 +85,11 @@ export const Ads = ({ deleteAdd }) => {
                       <p className="feature__desc">{data.jobCategory}</p>
                       <div className="feature__desc skills-container">
                         <div className="skill">Part -Time</div>
-                        <div className="skill">
+                        {/* <div className="skill">
                           Hourly pay rate - {data.payRate}
-                        </div>
+                        </div> */}
                         {/* <div className="skill">{data.jobType}</div> */}
-                        <div className="special-tag">Be the first to apply</div>
+             
                       </div>
                       <img
                         className="feature__img"

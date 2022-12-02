@@ -55,15 +55,16 @@ export default function Index() {
                   </>
                 ) : (
                   <>
-                         <>
-                    <a
-                      href={`/auth/login`}
-                      target="_blank"
-                      className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-400 active:bg-blueGray-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                    >
-                      Get started
-                    </a>
-                  </></>
+                    <>
+                      <a
+                        href={`/auth/login`}
+                        target="_blank"
+                        className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-400 active:bg-blueGray-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                      >
+                        Get started
+                      </a>
+                    </>
+                  </>
                 )}
 
                 {/* <div className="mt-10 ml-1 bg-orange-500 text-black font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg">
@@ -75,20 +76,25 @@ export default function Index() {
         </div>
         <div className="mx-auto" id="fading">
           <img
-            class="bottom absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px"
-            src="/img/Lovepik_com-611365995-Vector 25D Stereo Investment Finance Theme Illustration.png"
+            class="top absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px"
+            src="/img/Untitled-2.png"
+            alt=""
           />
           <img
+            class="bottom absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px"
+            src="/img/Untitled-2.png"
+          />
+          {/* <img
             class="top absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px"
             src="/img/Lovepik_com-611365996-Vector 25D Stereo Network Technology Theme Illustration.png"
-          />
+          /> */}
           {/* <img
             class="top absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px"
             src="/img/We are hiring-07.jpg"
           /> */}
         </div>
       </section>
-      <section className="py-20 bg-black overflow-hidden">
+      {/* <section className="py-20 bg-black overflow-hidden">
         <div className="container mx-auto pb-64">
           <div className="flex flex-wrap justify-center">
             <div className="w-full md:w-5/12 px-12 md:px-4 ml-auto mr-auto md:mt-64">
@@ -126,7 +132,7 @@ export default function Index() {
 
             <div className="w-full md:w-4/12 px-4 mr-auto ml-auto mt-32 relative">
               <img
-                src="/img/Asset 2@300x-8.png"
+                // src="/img/Asset 2@300x-8.png"
                 style={{ width: "200%", maxWidth: "1000px" }}
                 className="fab fa-github text-blueGray-700 absolute text-55  -right-100 left-auto opacity-80"
                 alt=""
@@ -134,7 +140,7 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <section className="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
         <div
           className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
