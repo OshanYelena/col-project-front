@@ -23,7 +23,7 @@ export default function Company() {
           {/* Brand */}
           <Link href="/">
             <p className="md:block text-lg text-center text-left md:pb-2 text-orange-500 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
-              Parttimer{" "}
+              Parttimer.lk{" "}
             </p>
           </Link>
           {/* User */}
@@ -48,7 +48,7 @@ export default function Company() {
                 <div className="w-6/12">
                   <Link href="/">
                     <p className="md:block text-left md:pb-2 text-orange-500 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
-                      Parttimer{" "}
+                      Parttimer.lk{" "}
                     </p>
                   </Link>
                 </div>
@@ -151,7 +151,7 @@ export default function Company() {
                 </Link>
               </li> */}
               <li className="items-center">
-                <Link href="/ads">
+                <Link href="/adds">
                   <p className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
                     View Job ads

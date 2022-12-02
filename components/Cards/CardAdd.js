@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
 import { useRouter } from "next/router";
 import { Authaccount } from "api/authRequire";
@@ -53,6 +54,7 @@ export default function CardAdd() {
   const [urloader, setUrloader] = useState(false);
   const [companyName, setComName] = useState("");
   const [companyId, setComId] = useState("");
+  const [reload, setReload] = useState(false);
 
   useEffect(async () => {
     const dataType = Authaccount();
@@ -65,19 +67,20 @@ export default function CardAdd() {
     const data = await getData();
     setComName(data.company.name);
     setComId(data._id);
-  }, []);
+  }, [reload]);
 
   const addFormData = Object.freeze({
-    jobType: "",
-    jobCategory: "",
+    jobType: "part-time",
     jobTitle: "",
     payRate: "",
+    phoneNo: "",
     time: "",
     flyerUrl: "",
     date: "",
   });
 
   const [addData, setAddData] = useState(addFormData);
+  const [jobCategory, setJobCategory] = useState("");
   const Editor = dynamic(
     () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
     { ssr: false }
@@ -129,6 +132,7 @@ export default function CardAdd() {
         jobDescription,
         companyId,
         companyName,
+        jobCategory,
       })
       .then(({ data }) => data);
     console.log(data);
@@ -153,18 +157,15 @@ export default function CardAdd() {
         [e.target.id]: e.target.value,
       });
     } else {
-      setAddData({
-        jobCategory: e.value,
-      });
+      setJobCategory(e.value);
     }
 
     console.log(addData);
   };
 
   const reset = (e) => {
-    console.log("asdafsgdvjh");
-    e.preventDefault();
     setSubmitter(true);
+    setReload(true);
     setUpload(true);
   };
 
@@ -194,6 +195,7 @@ export default function CardAdd() {
                       <input
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         id="jobTitle"
+                        autoComplete="off"
                         placeholder="Software Engineering"
                         type={"text"}
                         {...register("jobTitle", {
@@ -370,6 +372,31 @@ export default function CardAdd() {
                       )}
                     </div>
                   </div>
+                  <div className="px-4">
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Contact No
+                      </label>
+                      <input
+                        id="phoneNo"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        onChange={onChange}
+                        placeholder="xxx-xxxxxxx"
+                        type="number"
+                        {...register("phoneNo", {
+                          required: true,
+
+                          onChange: onChange,
+                        })}
+                      />
+                      {errors.phoneNo && (
+                        <p className="error">This field is required</p>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
@@ -478,11 +505,39 @@ export default function CardAdd() {
               </>
             ) : (
               <div className="">
-                Job Post Submited
-                <button className="apply" onClick={reset} type="button">
-                  {" "}
-                  Add Another Job Add
-                </button>{" "}
+                <div className="container mx-auto px-4 h-full">
+                  <div className="flex mt-10 content-center items-center justify-center h-full">
+                    <div className="w-full lg:w-6/12 px-4">
+                      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-orange-500 border-0">
+                        <div className="rounded-t mb-0 px-6 py-6">
+                          <div className="text-center mb-3">
+                            <h6 className="text-black text-lg font-bold">
+                              New Job Post Created
+                            </h6>
+                          </div>
+                          <div className="btn-wrapper text-center">
+                            <img src="/img/Asset 2@300x-8.png" alt="" />
+                          </div>
+                          <hr className="mt-6 border-b-1  border-blueGray-300" />
+                          <div className="text-center">
+                            <button
+                              onClick={() => {
+                                reset()
+                              }}
+                              type="submit"
+                            >
+                              Create New Job Post
+                            </button>
+
+                            <Link href={"/"}>
+                              <button type="submit">Back to Dashboard</button>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </div>

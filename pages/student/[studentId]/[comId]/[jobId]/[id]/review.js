@@ -23,6 +23,7 @@ const JobApplyId = () => {
     const applicationId = query.id.toString();
     const studentId = query.studentId.toString();
 
+
     let data = await api
       .post("/student/job/review", {
         jobId,

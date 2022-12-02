@@ -25,7 +25,7 @@ const Navbar = () => {
   }
 };
 
-export const ads = ({ deleteAdd }) => {
+export const Ads = ({ deleteAdd }) => {
   const [jobData, setJobData] = useState([]);
   const [remove, setRemove] = useState(false);
   const [addId, setAddId] = useState();
@@ -33,9 +33,9 @@ export const ads = ({ deleteAdd }) => {
 
   const router = useRouter();
 
-  const getads = async () => {
+  const getAds = async () => {
     let data = await api
-      .get("/company/job/all-ads", {})
+      .get("/company/job/all-adds", {})
       .then(({ data }) => data);
     console.log("uasgd", data.jobPosts);
     setJobData(data.jobPosts);
@@ -49,7 +49,7 @@ export const ads = ({ deleteAdd }) => {
     }
 
     cutrou(router.pathname);
-    getads();
+    getAds();
   }, []);
 
   const navbar = Navbar();
@@ -70,7 +70,7 @@ export const ads = ({ deleteAdd }) => {
                 jobData.map(({ data, _id }) => {
                   return (
                     <div key={data._id} class="feature feature-one">
-                      <Link href={`/admin/ads/${_id}`}>
+                      <Link href={`/admin/adds/${_id}`}>
                         <button
                           style={{ width: "20%" }}
                           class="view-tag bg-emerald-500 text-white active:bg-amber-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -143,6 +143,6 @@ export const ads = ({ deleteAdd }) => {
   );
 };
 
-export default ads;
+export default Ads;
 
-ads.layout = Admin;
+Ads.layout = Admin;

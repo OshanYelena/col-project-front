@@ -26,7 +26,7 @@ export default function Sidebar() {
               
               className="md:block text-lg text-center text-left md:pb-2 text-orange-500 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             >
-              Parttimer     </p>
+              Parttimer.lk     </p>
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -181,7 +181,7 @@ export default function Sidebar() {
               </li>
 
               <li className="inline-flex">
-              <Link href="/admin/ads">
+              <Link href="/admin/adds">
                   <p
      
                     className="text-orange-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"

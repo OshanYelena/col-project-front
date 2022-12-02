@@ -78,7 +78,7 @@ export default function Login() {
                   <div className="rounded-t mb-0 px-6 py-6">
                     <div className="text-center mb-3">
                       <h6 className="text-orange-500 text-lg font-bold">
-                        Welcome to parttimer
+                        Welcome to parttimer.lk
                       </h6>
                     </div>
                     <hr className="mt-6 border-b-1 border-blueGray-300" />

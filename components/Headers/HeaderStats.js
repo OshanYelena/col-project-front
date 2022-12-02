@@ -30,7 +30,7 @@ export default function HeaderStats() {
                 {type === "student" && (
                   <CardStats
                     statSubtitle="Student Dashboard"
-                    statTitle="Grab Your Job Opportunutie"
+                    statTitle="Find the best Opportunities"
                   />
                 )}
                 {type === "Admin" && (

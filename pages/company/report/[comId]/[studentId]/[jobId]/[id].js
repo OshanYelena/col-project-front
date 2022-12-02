@@ -21,6 +21,7 @@ const ReportSubmit = () => {
     const applicationId = query.id.toString();
     const studentId = query.studentId.toString();
     const jobId = query.jobId.toString();
+    const type = "company"
 
     let data = await api
       .post("/company/report/student", {
@@ -29,6 +30,7 @@ const ReportSubmit = () => {
         studentId,
         jobId,
         message,
+        type
       })
       .then(({ data }) => data);
     if (data.message === "report Submitted") {

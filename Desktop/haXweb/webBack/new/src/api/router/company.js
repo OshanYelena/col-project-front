@@ -16,8 +16,8 @@ import {
 
 router.get("/companies", getCompanies);
 router.get("/company/:id", getComapny);
-router.get('/company/job/ads', getJobPosts);
-router.get('/company/job/all-ads', getAllJobPosts);
+router.get('/company/job/adds', getJobPosts);
+router.get('/company/job/all-adds', getAllJobPosts);
 router.get('/company/job/add', getJobPost);
 
 router.post("/company/new", createCompany);

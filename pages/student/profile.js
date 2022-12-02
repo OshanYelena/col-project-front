@@ -70,7 +70,7 @@ export default function StudentProfile() {
                 <div className="rounded-t bg-white mb-0 px-6 py-6">
                   <div className="text-center flex justify-between">
                     <h6 className="text-orange-500 text-xl font-bold">
-                      My account
+                      My Account
                     </h6>
                     {/* <button
                       className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -190,7 +190,7 @@ export default function StudentProfile() {
                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                             htmlFor="grid-password"
                           >
-                            Degree
+                            Department
                           </label>
                           <input
                             type="text"
@@ -300,12 +300,12 @@ export default function StudentProfile() {
                       {data.address}
                     </div>
                     <div className="mb-2 text-blueGray-600 mt-10">
-                      <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                      Student - {data.faculty} {data.university}
+                    <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
+                      {data.university}, {data.faculty} 
                     </div>
                     <div className="mb-2 text-blueGray-600">
-                      <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-                      {data.university} of {data.degree}
+                      {/* <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i> */}
+                    {data.degree}
                     </div>
                   </div>
                   {/* <div className="mt-10 py-10 border-t border-blueGray-200 text-center">

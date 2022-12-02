@@ -25,7 +25,7 @@ export default function Company() {
             <p
               className="md:block text-left md:pb-2 text-center text-orange-500 mr-0 inline-block whitespace-nowrap text-lg uppercase font-bold p-4 px-0"
             >
-              Parttimer{" "}
+              Parttimer.lk{" "}
             </p>
           </Link>
           {/* User */}
@@ -53,7 +53,7 @@ export default function Company() {
      
                       className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     >
-                      Parttimer{" "}
+                      Parttimer.lk{" "}
                     </p>
                   </Link>
                 </div>
@@ -155,13 +155,13 @@ export default function Company() {
                 </Link>
               </li>
               <li className="items-center">
-                <Link href="/ads">
+                <Link href="/company/job-adds">
                   <p className="text-white hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint  text-orange-500 mr-2 text-sm"></i>{" "}
                     View My Job
                   </p>
                 </Link>
-                <Link href="/company/job-ads/applications">
+                <Link href="/company/job-adds/applications">
                   <p className="text-white hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
                     <i className="fas fa-fingerprint  text-orange-500 mr-2 text-sm"></i>{" "}
                     Job Applications

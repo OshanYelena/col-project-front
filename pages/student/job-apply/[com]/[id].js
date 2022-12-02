@@ -17,6 +17,7 @@ const JobApplyId = () => {
   const [loader, setUrloader] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [cvUrl, setcvUrl] = useState("");
+  const [load, setLoad] = useState(true)
   const { query } = useRouter();
 
   const onSubmit = async (e) => {
@@ -38,6 +39,10 @@ const JobApplyId = () => {
       setSubmit(true);
     }
   };
+
+  const onChange = () =>{
+    setLoad(false)
+  }
 
   const getUserData = (data) => {
     setUserData(data);
@@ -78,9 +83,9 @@ const JobApplyId = () => {
               <div className="container px-4 h-full">
                 <div className="flex items-center justify-center">
                   <div className="">
-                    <div className="relative mt-10 flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-orange-500 border-0">
+                    <div className="relative mt-10 flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-black-500 border-0">
                       <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                        <div className="text-black text-lg text-center mt-10 mb-3 font-bold">
+                        <div className="text-orange-500 text-lg text-center mt-10 mb-3 font-bold">
                           <p className="text-lg">Apply to this job</p>
                         </div>
                         <form onSubmit={onSubmit}>
@@ -127,15 +132,41 @@ const JobApplyId = () => {
                               type="file"
                             />
                           </div>
+                          <label className=" items-center  cursor-pointer">
+                   
+                            <span className="ml-2 text-lg font-semibold text-red-500">
+                              If you fail to complete this task on time, you
+                              will be blacklisted!
+                            </span>
+                          </label>
+                          {/* <label className="inline-flex items-center  cursor-pointer">
+                            <input
+                              id="customCheckLogin"
+                              type="checkbox"
+                              style={{ backgroundColor: "orange" }}
+                              onChange={onChange}
+                              className="form-checkbox border-0 rounded  text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                            />
+                            <span className="ml-2 text-sm font-semibold text-blueGray-600">
+                              I agree with the{" "}
+                              <a
+                                className="text-lightBlue-500"
+                                onClick={(e) => e.preventDefault()}
+                              >
+                                Privacy Policy
+                              </a>
+                            </span>
+                          </label> */}
 
                           <div className="text-center mt-6">
                             {loader && (
                               <button
                                 className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                                 type="submit"
+                    
                                 onClick={onSubmit}
                               >
-                                Apply
+                                Submit Your Application
                               </button>
                             )}
                           </div>

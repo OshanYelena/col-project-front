@@ -5,7 +5,7 @@ import React, {useEffect} from "react";
 // layout for page
 
 import Student from "layouts/Student.js";
-import ads from "pages/adds";
+import Adds from "pages/adds";
 import { useRouter } from "next/router";
 
 import { Authaccount } from "api/authRequire";

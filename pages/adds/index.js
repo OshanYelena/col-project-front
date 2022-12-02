@@ -45,8 +45,10 @@ const options = [
   { value: "Data", label: "Data" },
 ];
 
-export const ads = ({ deleteAdd }) => {
+export const Adds = ({ deleteAdd }) => {
   const [jobData, setJobData] = useState([]);
+  const [comName, setComName] = useState([]);
+
   const [remove, setRemove] = useState(false);
   const [addId, setAddId] = useState();
   const [rot, cutrou] = useState("");
@@ -67,16 +69,19 @@ export const ads = ({ deleteAdd }) => {
     }
   };
 
-  const getcomads = async (comName) => {
+  const getcomAds = async (comName) => {
     console.log(comName);
-    let data = await api.post(`/ads/search?comName=${comName}&page=${page}&search=${search}`).then(({ data }) => data);
+    let data = await api.post(`/adds/search?comName=${comName}&page=${page}&search=${search}`).then(({ data }) => data);
     
     setLoad(true);
     setJobData(data.jobs);
+    // console.log("hello", data.jobs);
+
+    // setComName(data)
   };
 
-  const getads = async () => {
-    let data = await api.post(`/ads/search?comName=All&page=${page}&search=${search}`).then(({ data }) => data);
+  const getAdds = async () => {
+    let data = await api.post(`/adds/search?comName=All&page=${page}&search=${search}`).then(({ data }) => data);
     // let data = await api
     //   .get("/company/job/all-ads", {})
     //   .then(({ data }) => data);
@@ -94,12 +99,13 @@ export const ads = ({ deleteAdd }) => {
 
     const data = await getData();
     setUrl(data.urls);
+
     if (data.company) {
       setUrl(data.urls);
-      console.log(data.urls);
-      getcomads(data.company.name);
+
+      getcomAds(data.company.name);
     } else {
-      getads();
+      getAdds();
     }
   }, [jobDel, search]);
 
@@ -207,7 +213,7 @@ export const ads = ({ deleteAdd }) => {
                           </button>
                         </>
                       )}
-                      <Link href={`/ads/${_id}`}>
+                      <Link href={`/adds/${_id}`}>
                         <button
                           style={{ width: "20%" }}
                           className="view-tag bg-emerald-500 text-white active:bg-amber-600 font-bold uppercase text-sm px-6 py-3 rounded  hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -219,7 +225,7 @@ export const ads = ({ deleteAdd }) => {
                       </Link>
 
                       <h2 className="text-orange-500 feature__title">
-                        {data.jobTitle}
+                        {data.jobTitle} - {data.companyName}
                       </h2>
                       <p className="feature__desc">{data.jobCategory}</p>
                       <div className="feature__desc skills-container">
@@ -227,8 +233,11 @@ export const ads = ({ deleteAdd }) => {
                         <div className="skill">
                           Hourly pay rate - {data.payRate}
                         </div>
+                        <div className="skill">
+                          Location - {data.address}
+                        </div>
                         {/* <div className="skill">{data.jobType}</div> */}
-                        <div className="special-tag">Be the first to apply</div>
+                        {/* <div className="special-tag">Be the first to apply</div> */}
                       </div>
 
                       <img
@@ -277,6 +286,6 @@ export const ads = ({ deleteAdd }) => {
   );
 };
 
-export default ads;
+export default Adds;
 
 // ads.layout = Auth;

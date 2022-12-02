@@ -7,7 +7,7 @@ import { Authaccount } from "api/authRequire";
 
 // layout for page
 
-import ads from "pages/adds";
+import adds from "pages/adds";
 
 import Company from "layouts/Company.js";
 

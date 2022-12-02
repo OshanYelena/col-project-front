@@ -286,7 +286,7 @@ const Student = () => {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                    Degree
+                    Department
                     </label>
                     <input
                       id="degree"

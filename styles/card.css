@@ -46,6 +46,8 @@
 }
 
 .feature__img {
+  max-width: 100px;
+  max-height: 100px;
   position: absolute;
   top: 22%;
   left: 5%;
