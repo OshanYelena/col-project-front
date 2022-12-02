@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 import Select from "react-select";
-
+import Moment from 'react-moment';
+import moment from "moment/moment";
 import { Authaccount } from "api/authRequire";
 
 import Auth from "layouts/Auth.js";
@@ -57,6 +58,7 @@ export const Adds = ({ deleteAdd }) => {
   const [search, setQuery] = useState("");
   const [jobDel, setDelete] = useState(false);
   const [page, setPage] = useState(1);
+  const [appliedJobs, setAppliedJobs] = useState([]);
 
   const router = useRouter();
 
@@ -71,8 +73,10 @@ export const Adds = ({ deleteAdd }) => {
 
   const getcomAds = async (comName) => {
     console.log(comName);
-    let data = await api.post(`/adds/search?comName=${comName}&page=${page}&search=${search}`).then(({ data }) => data);
-    
+    let data = await api
+      .post(`/adds/search?comName=${comName}&page=${page}&search=${search}`)
+      .then(({ data }) => data);
+
     setLoad(true);
     setJobData(data.jobs);
     // console.log("hello", data.jobs);
@@ -81,11 +85,14 @@ export const Adds = ({ deleteAdd }) => {
   };
 
   const getAdds = async () => {
-    let data = await api.post(`/adds/search?comName=All&page=${page}&search=${search}`).then(({ data }) => data);
+    let data = await api
+      .post(`/adds/search?comName=All&page=${page}&search=${search}`)
+      .then(({ data }) => data);
     // let data = await api
     //   .get("/company/job/all-ads", {})
     //   .then(({ data }) => data);
     setLoad(true);
+    console.log("jobs", data);
     setJobData(data.jobs);
   };
 
@@ -98,6 +105,7 @@ export const Adds = ({ deleteAdd }) => {
     cutrou(router.pathname);
 
     const data = await getData();
+    setAppliedJobs(data.appliedJobs);
     setUrl(data.urls);
 
     if (data.company) {
@@ -144,7 +152,7 @@ export const Adds = ({ deleteAdd }) => {
                         Filter Your Jobs
                       </h6>
                     </div>
-                    <form >
+                    <form>
                       <div className="flex flex-wrap">
                         <div className="w-full lg:w-6/12 px-4">
                           <div className="relative w-full mb-3">
@@ -158,7 +166,9 @@ export const Adds = ({ deleteAdd }) => {
                               onChange={onChange}
                             />
                           </div>
-                          <button style={{marginTop: "0px"}} type="submit">Search</button>
+                          <button style={{ marginTop: "0px" }} type="submit">
+                            Search
+                          </button>
                         </div>
                       </div>
                     </form>
@@ -166,7 +176,7 @@ export const Adds = ({ deleteAdd }) => {
                 </div>
               </div>
               {jobData.length !== 0 &&
-                jobData.map(({ data, _id }) => {
+                jobData.map(({ data, _id, jobVacanciesStatus, create }) => {
                   return (
                     <div key={data._id} class="feature feature-one">
                       {remove && addId === _id && (
@@ -213,16 +223,36 @@ export const Adds = ({ deleteAdd }) => {
                           </button>
                         </>
                       )}
-                      <Link href={`/adds/${_id}`}>
-                        <button
-                          style={{ width: "20%" }}
-                          className="view-tag bg-emerald-500 text-white active:bg-amber-600 font-bold uppercase text-sm px-6 py-3 rounded  hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                          // type="button"
-                        >
-                          View Job
-                          {/* <i class="fas fa-solid fa-eye"> </i> */}
-                        </button>
-                      </Link>
+                      {jobVacanciesStatus === "applied" ? (
+
+                        <>    {console.log(data)}<>
+                        {" "}
+                        <Link href={`/adds/${_id}`}>
+                          <button
+                            style={{ width: "40%" }}
+                            className="view-tag bg-red-500 text-white active:bg-amber-600 font-bold uppercase text-sm px-6 py-3 rounded  hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            // type="button"
+                          >
+                            Job Closed
+                            {/* <i class="fas fa-solid fa-eye"> </i> */}
+                          </button>
+                        </Link>
+                      </></>
+                      ) : (
+                        <>
+                          {" "}
+                          <Link href={`/adds/${_id}`}>
+                            <button
+                              style={{ width: "20%" }}
+                              className="view-tag bg-emerald-500 text-white active:bg-amber-600 font-bold uppercase text-sm px-6 py-3 rounded  hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                              // type="button"
+                            >
+                              View Job
+                              {/* <i class="fas fa-solid fa-eye"> </i> */}
+                            </button>
+                          </Link>
+                        </>
+                      )}
 
                       <h2 className="text-orange-500 feature__title">
                         {data.jobTitle} - {data.companyName}
@@ -233,10 +263,13 @@ export const Adds = ({ deleteAdd }) => {
                         <div className="skill">
                           Hourly pay rate - {data.payRate}
                         </div>
-                        <div className="skill">
-                          Location - {data.address}
+                        <div className="skill">Location - {data.address}</div>
+                        <div className="skill"> Created - 
+                        {moment(`${create}`, "YYYYMMDD").fromNow()}
+                  
                         </div>
-                        {/* <div className="skill">{data.jobType}</div> */}
+                        <div style={{color: "white"}} className="bg-red-500 skill">Deadline for applications -       <Moment date={data.date}></Moment></div>
+
                         {/* <div className="special-tag">Be the first to apply</div> */}
                       </div>
 
