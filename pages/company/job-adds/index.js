@@ -46,7 +46,7 @@ const options = [
   { value: "Data", label: "Data" },
 ];
 
-export const Ads = (color = "dark") => {
+const Ads = (color = "dark") => {
   const [jobData, setJobData] = useState([]);
   const [comName, setComName] = useState([]);
 
@@ -288,5 +288,8 @@ export const Ads = (color = "dark") => {
     </>
   );
 };
+
+
+export default Ads;
 
 Ads.layout = Company;
