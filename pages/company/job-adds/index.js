@@ -289,6 +289,4 @@ export const Ads = (color = "dark") => {
   );
 };
 
-export default Ads;
-
 Ads.layout = Company;
